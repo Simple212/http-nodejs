@@ -83,6 +83,7 @@ else if (req.body.from30 =='ltc' && req.body.to30=='doge'){
 else if (req.body.from30 =='doge' && req.body.to30=='ltc'){
 	from105=doge_apikey
 	to105 = ltc_apikey
+	console.log("ltc to doge")
 }
 else if (req.body.from30 =='btc' && req.body.to30=='doge'){
 	from105=btc_apikey
@@ -132,6 +133,7 @@ else if (req.body.from30 =='doge' && req.body.to30=='btc'){
 			var fees=0
 			if (((final_amount)*(data.data.prices[0].price))<=1) {
 				fees=0.25
+				console.log(fees)
 			}
 			else if (1<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=10) {
 				fees=0.50
