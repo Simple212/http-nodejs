@@ -1,11 +1,13 @@
 const express = require('express')
 const app = express()
 const BlockIo=require('block_io')
+const fetch = require('node-fetch')
 const cors = require('cors')
 app.use(cors())
 app.use(express.json())
 let PORT = process.env.PORT
  
+
 app.listen(PORT || 3000, ()=>{
 	console.log(`App is running on ${PORT}`)
 })
@@ -83,7 +85,6 @@ else if (req.body.from30 =='ltc' && req.body.to30=='doge'){
 else if (req.body.from30 =='doge' && req.body.to30=='ltc'){
 	from105=doge_apikey
 	to105 = ltc_apikey
-	console.log("doge to ltc 1")
 }
 else if (req.body.from30 =='btc' && req.body.to30=='doge'){
 	from105=btc_apikey
@@ -128,36 +129,26 @@ else if (req.body.from30 =='doge' && req.body.to30=='btc'){
 }
 
 	if(req.body.to30=='ltc'){
-		console.log("asdfasdfltc ltc ltc")
-		console.log(from105)
-		console.log(to105)
 	fetch(`https://block.io/api/v2/get_current_price/?api_key=${from105}&price_base=usd`).then(data2 => data2.json()).then(data => {
 		fetch(`https://block.io/api/v2/get_current_price/?api_key=${to105}&price_base=usd`).then(data10 => data10.json()).then(data10 =>{
 			var fees=0
 			if (((final_amount)*(data.data.prices[0].price))<=1) {
 				fees=0.25
-				console.log(fees)
 			}
 			else if (1<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=10) {
 				fees=0.50
-				console.log(fees)
 			}
 			else if (10<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=100) {
 				fees=2
-				console.log(fees)
 			}
 			else if (100<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=1000) {
 				fees=5
-				console.log(fees)
 			}
 			else if (1000<((final_amount)*(data.data.prices[0].price))) {
 				fees=10
-				console.log(fees)
 			}
-			console.log(to105)
 			var final_amount2 = ((((final_amount)*(data.data.prices[0].price))-(fees))/data10.data.prices[0].price)
 			var final_amount3=final_amount2.toFixed(5)
-			console.log(final_amount3)
 			async function first500() {
 				const first20 = await block_io_l.prepare_transaction({amounts:`${final_amount3}`, to_addresses:`${req.body.address}`,priority: 'low'})
 				const first30 = await block_io_l.create_and_sign_transaction({data:first20 , pin : 'alskdjfasdf2342134'})
