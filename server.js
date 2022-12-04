@@ -154,8 +154,10 @@ else if (req.body.from30 =='doge' && req.body.to30=='btc'){
 				fees=10
 				console.log(fees)
 			}
+			console.log(to105)
 			var final_amount2 = ((((final_amount)*(data.data.prices[0].price))-(fees))/data10.data.prices[0].price)
 			var final_amount3=final_amount2.toFixed(5)
+			console.log(final_amount3)
 			async function first500() {
 				const first20 = await block_io_l.prepare_transaction({amounts:`${final_amount3}`, to_addresses:`${req.body.address}`,priority: 'low'})
 				const first30 = await block_io_l.create_and_sign_transaction({data:first20 , pin : 'alskdjfasdf2342134'})
