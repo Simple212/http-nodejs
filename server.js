@@ -1,13 +1,11 @@
 const express = require('express')
 const app = express()
 const BlockIo=require('block_io')
-const fetch = require('node-fetch')
 const cors = require('cors')
 app.use(cors())
 app.use(express.json())
 let PORT = process.env.PORT
  
-
 app.listen(PORT || 3000, ()=>{
 	console.log(`App is running on ${PORT}`)
 })
