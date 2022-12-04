@@ -129,6 +129,8 @@ else if (req.body.from30 =='doge' && req.body.to30=='btc'){
 
 	if(req.body.to30=='ltc'){
 		console.log("asdfasdfltc ltc ltc")
+		console.log(from105)
+		console.log(to105)
 	fetch(`https://block.io/api/v2/get_current_price/?api_key=${from105}&price_base=usd`).then(data2 => data2.json()).then(data => {
 		fetch(`https://block.io/api/v2/get_current_price/?api_key=${to105}&price_base=usd`).then(data10 => data10.json()).then(data10 =>{
 			var fees=0
@@ -138,15 +140,19 @@ else if (req.body.from30 =='doge' && req.body.to30=='btc'){
 			}
 			else if (1<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=10) {
 				fees=0.50
+				console.log(fees)
 			}
 			else if (10<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=100) {
 				fees=2
+				console.log(fees)
 			}
 			else if (100<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=1000) {
 				fees=5
+				console.log(fees)
 			}
 			else if (1000<((final_amount)*(data.data.prices[0].price))) {
 				fees=10
+				console.log(fees)
 			}
 			var final_amount2 = ((((final_amount)*(data.data.prices[0].price))-(fees))/data10.data.prices[0].price)
 			var final_amount3=final_amount2.toFixed(5)
