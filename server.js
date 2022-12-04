@@ -83,7 +83,7 @@ else if (req.body.from30 =='ltc' && req.body.to30=='doge'){
 else if (req.body.from30 =='doge' && req.body.to30=='ltc'){
 	from105=doge_apikey
 	to105 = ltc_apikey
-	console.log("ltc to doge")
+	console.log("doge to ltc 1")
 }
 else if (req.body.from30 =='btc' && req.body.to30=='doge'){
 	from105=btc_apikey
@@ -128,6 +128,7 @@ else if (req.body.from30 =='doge' && req.body.to30=='btc'){
 }
 
 	if(req.body.to30=='ltc'){
+		console.log("asdfasdfltc ltc ltc")
 	fetch(`https://block.io/api/v2/get_current_price/?api_key=${from105}&price_base=usd`).then(data2 => data2.json()).then(data => {
 		fetch(`https://block.io/api/v2/get_current_price/?api_key=${to105}&price_base=usd`).then(data10 => data10.json()).then(data10 =>{
 			var fees=0
