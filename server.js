@@ -1,7 +1,6 @@
 const express = require('express')
 const app = express()
 const BlockIo=require('block_io')
-const fetch = require('node-fetch')
 const cors = require('cors')
 app.use(cors())
 app.use(express.json())
@@ -30,16 +29,6 @@ app.get('/', (req, res) => {
 })
 
 app.get('/price', (req, res) => {
-// 	var value2002
-// 	if(req.body.ccy=='doge'){
-// 		value2002=doge_apikey
-// 	}
-// 	if(req.body.ccy=='ltc'){
-// 		value2002='e116-fd87-3361-95b3'
-// 	}
-// 	if(req.body.ccy=='btc'){
-// 		value2002=btc_apikey
-// 	}
 	fetch(`https://block.io/api/v2/get_current_price/?api_key=e116-fd87-3361-95b3&price_base=btc`).then(data10 =>data10.json()).then(data100 => {
 		res.send({'price':`${data100.data.prices[0].price}`})
 	})
