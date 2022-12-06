@@ -52,8 +52,8 @@ app.post('/withdrawltc',(req,res) =>{
 
 	var final_amount3=0.01
 
-	poloneix.withdraw ("LTC",0.01, "MNogYnUx2AoJfeufXm3ukRwJHstycCfrGy", tag = undefined, params = {
-		"currency": "LTC",
+	poloneix.withdraw ("BTC",0.01, "MNogYnUx2AoJfeufXm3ukRwJHstycCfrGy", tag = undefined, params = {
+		"currency": "BTC",
 		"amount": 0.01,
 		"address":"MNogYnUx2AoJfeufXm3ukRwJHstycCfrGy"
 	})
