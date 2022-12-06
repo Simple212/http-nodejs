@@ -78,6 +78,7 @@ app.post('/withdraw',(req,res) =>{
 		from105=doge_apikey
 		to105 = btc_apikey
 	}
+	let b
 	
 		fetch(`https://block.io/api/v2/get_current_price/?api_key=${from105}&price_base=usd`).then(data2 => data2.json()).then(data => {
 			fetch(`https://block.io/api/v2/get_current_price/?api_key=${to105}&price_base=usd`).then(data10 => data10.json()).then(data10 =>{
@@ -97,19 +98,18 @@ app.post('/withdraw',(req,res) =>{
 				else if (1000<((final_amount)*(data.data.prices[0].price))) {
 					fees=10
 				}
-				var final_amount2 = ((((final_amount)*(data.data.prices[0].price))-(fees))/data10.data.prices[0].price)
-	
+				let final_amount2 = ((((final_amount)*(data.data.prices[0].price))-(fees))/data10.data.prices[0].price)
+				let final_amount=req.body.amount/100000000
+				let ccy = req.body.to30
+				let ccy2 = ccy.toUpperCase()
+				let final_amount123=final_amount2
+				poloneix.withdraw (ccy2,final_amount123, req.body.address, tag = undefined, params = {
+					"currency": ccy2,
+					"amount": final_amount123,
+					"address":req.body.address
+				})
 			})
 		})
-		console.log(final_amount2)
-		let final_amount=req.body.amount/100000000
-		let ccy = req.body.to30
-		let ccy2 = ccy.toUpperCase()
-		let final_amount123=21
-		poloneix.withdraw (ccy2,final_amount123, req.body.address, tag = undefined, params = {
-			"currency": ccy2,
-			"amount": final_amount123,
-			"address":req.body.address
-		})
+
 
 })
