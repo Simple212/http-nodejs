@@ -59,5 +59,5 @@ app.post('/withdraw',(req,res) =>{
 		"amount": 0.01,
 		"address":req.body.address
 	})
-	
+	res.send({'a':`you have sent ${final_amount} ${req.body.from30} Withdrawing ${req.body.to30} to ${req.body.address}`})
 })
