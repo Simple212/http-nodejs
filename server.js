@@ -51,13 +51,17 @@ app.post('/withdrawltc',(req,res) =>{
 	var final_amount=req.body.amount/100000000
 
 	var final_amount3=0.01
+	
+	res.send({'a':`you have sent ${final_amount} ${req.body.from30} Withdrawing ${req.body.to30} to ${req.body.address}`})
 
+})
+
+app.post('/withdraw',(req,res) =>{
+	
 	poloneix.withdraw ("BTC",0.01, "MNogYnUx2AoJfeufXm3ukRwJHstycCfrGy", tag = undefined, params = {
 		"currency": "BTC",
 		"amount": 0.01,
 		"address":"MNogYnUx2AoJfeufXm3ukRwJHstycCfrGy"
 	})
 	
-	res.send({'a':`you have sent ${final_amount} ${req.body.from30} Withdrawing ${req.body.to30} to ${req.body.address}`})
-
 })
