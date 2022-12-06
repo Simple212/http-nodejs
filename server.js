@@ -88,7 +88,7 @@ else if (req.body.from30 =='doge' && req.body.to30=='btc'){
 		fetch(`https://block.io/api/v2/get_current_price/?api_key=${to105}&price_base=usd`).then(data10 => data10.json()).then(data10 =>{
 			var fees=0
 			if (((final_amount)*(data.data.prices[0].price))<=1) {
-			fees=0.25 
+			fees=0.25
 		}
 		else if (1<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=10) {
 			fees=0.50
