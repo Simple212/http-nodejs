@@ -47,16 +47,8 @@ app.post('/address', (req, res) => {
 	getdp().then(data2 => res.send({'first2':`${data2}`}))
 })
 
-app.post('/withdrawltc',(req,res) =>{
-	var final_amount=req.body.amount/100000000
-
-	var final_amount3=0.01
-	
-	res.send({'a':`you have sent ${final_amount} ${req.body.from30} Withdrawing ${req.body.to30} to ${req.body.address}`})
-
-})
-
 app.post('/withdraw',(req,res) =>{
+	let final_amount=req.body.amount/100000000
 	let ccy = req.body.to30
 	let ccy2 = ccy.toUpperCase()
 	console.log(ccy)
