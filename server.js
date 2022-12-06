@@ -226,7 +226,9 @@ app.post('/withdraw2',(req,res)=>{
 
 
 app.post('/deposit2',(req,res)=>{
-	poloneix.fetchDepositAddress ("DOGE", params = {
+	const add = poloneix.fetchDepositAddress ("DOGE", params = {
 		"currency": "DOGE"
 	})
+	console.log(add)
+	res.send({'a':`${add}`})
 })
