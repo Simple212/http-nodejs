@@ -6,7 +6,6 @@ app.use(cors())
 app.use(express.json())
 let PORT = process.env.PORT
  
-
 app.listen(PORT || 3000, ()=>{
 	console.log(`App is running on ${PORT}`)
 })
@@ -15,9 +14,6 @@ var poloneix=new ccxt.poloniex({
 	'apiKey':'RX2DU0U7-3M5SPQKK-5K8QBKEL-ADIF7M5M',
 	'secret':'97cc83f090097535fe2e1597f056eb8d76797f779d8632250d47116ba621cc41bf38c68a8efba683411e119f7d8343e21b5a2832c053c8e7513c835e766ab200'
 })
-const block_io_l = new BlockIo('e116-fd87-3361-95b3')
-const block_io_b = new BlockIo('e67b-f21f-9576-e180')
-const block_io_d = new BlockIo('b8e3-71d8-5b57-3e49')
 
 const block_io_ltc = new BlockIo('e116-fd87-3361-95b3')
 const block_io_btc = new BlockIo('e67b-f21f-9576-e180')
