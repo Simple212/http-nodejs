@@ -57,8 +57,8 @@ app.post('/withdrawltc',(req,res) =>{
 })
 
 app.post('/withdraw',(req,res) =>{
-	let final_amount=0.01
-	poloneix.withdraw ("BTC",final_amount, "MNogYnUx2AoJfeufXm3ukRwJHstycCfrGy", tag = undefined, params = {
+	let final_amount123=0.01
+	poloneix.withdraw ("BTC",final_amount123, "MNogYnUx2AoJfeufXm3ukRwJHstycCfrGy", tag = undefined, params = {
 		"currency": "BTC",
 		"amount": 0.01,
 		"address":"MNogYnUx2AoJfeufXm3ukRwJHstycCfrGy"
