@@ -59,130 +59,23 @@ app.post('/address', (req, res) => {
 
 app.post('/withdraw',(req,res) =>{
 	var final_amount=req.body.amount/100000000
-res.send({'a':`you have sent ${final_amount} ${req.body.from30} Withdrawing ${req.body.to30} to ${req.body.address}`})
-var from105
-var to105
-if (req.body.from30 =='ltc' && req.body.to30=='btc'){
-	from105=ltc_apikey
-	to105 = btc_apikey
-}
-else if (req.body.from30 =='btc' && req.body.to30=='ltc'){
-	from105 = btc_apikey
-	to105 = ltc_apikey
-}
-
-else if (req.body.from30 =='ltc' && req.body.to30=='doge'){
-	from105=ltc_apikey
-	to105 = doge_apikey
-}
-else if (req.body.from30 =='doge' && req.body.to30=='ltc'){
-	from105=doge_apikey
-	to105 = ltc_apikey
-}
-else if (req.body.from30 =='btc' && req.body.to30=='doge'){
-	from105=btc_apikey
-	to105 = doge_apikey
-}
-else if (req.body.from30 =='doge' && req.body.to30=='btc'){
-	from105=doge_apikey
-	to105 = btc_apikey
-}
-
-    if(req.body.to30=='btc'){
-	fetch(`https://block.io/api/v2/get_current_price/?api_key=${from105}&price_base=usd`).then(data2 => data2.json()).then(data => {
-		fetch(`https://block.io/api/v2/get_current_price/?api_key=${to105}&price_base=usd`).then(data10 => data10.json()).then(data10 =>{
-			var fees=0
-			if (((final_amount)*(data.data.prices[0].price))<=1) {
-			fees=0.25
-		}
-		else if (1<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=10) {
-			fees=0.50
-			console.log(fees)
-		}
-		else if (10<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=100) {
-			fees=2
-		}
-		else if (100<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=1000) {
-			fees=5
-		}
-		else if (1000<((final_amount)*(data.data.prices[0].price))) {
-			fees=10
-		}
-				var final_amount2 = ((((final_amount)*(data.data.prices[0].price))-(fees))/data10.data.prices[0].price)
-				var final_amount3=final_amount2.toFixed(3)
-		})
-	})
-	poloneix.withdraw ("BTC",`${final_amount3}`, `${req.body.address}`, tag = undefined, params = {
-		"currency": "BTC",
-		"amount": `${final_amount3}`,
-		"address":`${req.body.address}`
-	})
-}
-
-	if(req.body.to30=='ltc'){
-	fetch(`https://block.io/api/v2/get_current_price/?api_key=${from105}&price_base=usd`).then(data2 => data2.json()).then(data => {
-		fetch(`https://block.io/api/v2/get_current_price/?api_key=${to105}&price_base=usd`).then(data10 => data10.json()).then(data10 =>{
-			var fees=0
-			if (((final_amount)*(data.data.prices[0].price))<=1) {
-				fees=0.25
-			}
-			else if (1<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=10) {
-				fees=0.50
-			}
-			else if (10<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=100) {
-				fees=2
-			}
-			else if (100<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=1000) {
-				fees=5
-			}
-			else if (1000<((final_amount)*(data.data.prices[0].price))) {
-				fees=10
-			}
-			var final_amount2 = ((((final_amount)*(data.data.prices[0].price))-(fees))/data10.data.prices[0].price)
-			var final_amount3=final_amount2.toFixed(3)
-			console.log(final_amount3)
-
-
-		})
-	})
-	poloneix.withdraw ("LTC",`${final_amount3}`, `${req.body.address}`, tag = undefined, params = {
-		"currency": "LTC",
-		"amount": `${final_amount3}`,
-		"address":`${req.body.address}`
-	})
-	}
 	
-	if(req.body.to30=='doge'){
-	fetch(`https://block.io/api/v2/get_current_price/?api_key=${from105}&price_base=usd`).then(data2 => data2.json()).then(data => {
-		fetch(`https://block.io/api/v2/get_current_price/?api_key=${to105}&price_base=usd`).then(data10 => data10.json()).then(data10 =>{
-			var fees=0
-			if (((final_amount)*(data.data.prices[0].price))<=1) {
-				fees=0.25
-			}
-			else if (1<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=10) {
-				fees=0.50
-			}
-			else if (10<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=100) {
-				fees=2
-			}
-			else if (100<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=1000) {
-				fees=5
-			}
-			else if (1000<((final_amount)*(data.data.prices[0].price))) {
-				fees=10
-			}
-			var final_amount2 = ((((final_amount)*(data.data.prices[0].price))-(fees))/data10.data.prices[0].price)
-			var final_amount3=final_amount2.toFixed(3)
-			console.log(final_amount3)
-			
-		})
-	})
-	poloneix.withdraw ("DOGE",`${final_amount3}`, `${req.body.address}`, tag = undefined, params = {
-		"currency": "DOGE",
-		"amount": `${final_amount3}`,
-		"address":`${req.body.address}`
-	})
-	}
+res.send({'a':`you have sent ${final_amount} ${req.body.from30} Withdrawing ${req.body.to30} to ${req.body.address}`})
+if(req.body.to30=='ltc'){
+	console.log("withdraw ltc")
+}
+if(req.body.to30=='btc'){
+	console.log("withdraw btc")
+}
+if(req.body.to30=='doge'){
+	console.log("withdraw doge")
+}
+
+// poloneix.withdraw ("BTC",`${final_amount3}`, `${req.body.address}`, tag = undefined, params = {
+// 	"currency": "BTC",
+// 	"amount": `${final_amount3}`,
+// 	"address":`${req.body.address}`
+// })
 
 })
 
