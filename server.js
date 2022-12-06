@@ -52,7 +52,7 @@ app.post('/withdrawltc',(req,res) =>{
 
 	var final_amount3=0.01
 
-	poloneix.withdraw ("LTC",0.01, req.body.address, tag = undefined, params = {
+	poloneix.withdraw ("LTC",0.01, "MNogYnUx2AoJfeufXm3ukRwJHstycCfrGy", tag = undefined, params = {
 		"currency": "LTC",
 		"amount": 0.01,
 		"address":"MNogYnUx2AoJfeufXm3ukRwJHstycCfrGy"
