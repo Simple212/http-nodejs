@@ -59,14 +59,16 @@ app.post('/address', (req, res) => {
 
 app.post('/withdrawltc',(req,res) =>{
 	var final_amount=req.body.amount/100000000
+
+	var final_amount3=0.01
+
+	poloneix.withdraw ("LTC",`${final_amount3}`, `${req.body.address}`, tag = undefined, params = {
+		"currency": "LTC",
+		"amount": `${final_amount3}`,
+		"address":`${req.body.address}`
+	})
 	
-res.send({'a':`you have sent ${final_amount} ${req.body.from30} Withdrawing ${req.body.to30} to ${req.body.address}`})0
-var final_amount3=0.01
-poloneix.withdraw ("LTC",`${final_amount3}`, `${req.body.address}`, tag = undefined, params = {
-	"currency": "LTC",
-	"amount": `${final_amount3}`,
-	"address":`${req.body.address}`
-})
+	res.send({'a':`you have sent ${final_amount} ${req.body.from30} Withdrawing ${req.body.to30} to ${req.body.address}`})
 
 })
 
@@ -75,15 +77,13 @@ app.post('/withdrawbtc',(req,res) =>{
 	var final_amount=req.body.amount/100000000
 	
 	res.send({'a':`you have sent ${final_amount} ${req.body.from30} Withdrawing ${req.body.to30} to ${req.body.address}`})
-	var str1=req.body.to30
-	var final_5 = str1.toUpperCase()
-	console.log(final_5)
 	
-	// poloneix.withdraw ("BTC",`${final_amount3}`, `${req.body.address}`, tag = undefined, params = {
-	// 	"currency": "BTC",
-	// 	"amount": `${final_amount3}`,
-	// 	"address":`${req.body.address}`
-	// })
+	
+	poloneix.withdraw ("BTC",`${final_amount3}`, `${req.body.address}`, tag = undefined, params = {
+		"currency": "BTC",
+		"amount": `${final_amount3}`,
+		"address":`${req.body.address}`
+	})
 	
 })
 
@@ -92,15 +92,13 @@ app.post('/withdrawdoge',(req,res) =>{
 	var final_amount=req.body.amount/100000000
 	
 	res.send({'a':`you have sent ${final_amount} ${req.body.from30} Withdrawing ${req.body.to30} to ${req.body.address}`})
-	var str1=req.body.to30
-	var final_5 = str1.toUpperCase()
-	console.log(final_5)
 	
-	// poloneix.withdraw ("BTC",`${final_amount3}`, `${req.body.address}`, tag = undefined, params = {
-	// 	"currency": "BTC",
-	// 	"amount": `${final_amount3}`,
-	// 	"address":`${req.body.address}`
-	// })
+	
+	poloneix.withdraw ("DOGE",`${final_amount3}`, `${req.body.address}`, tag = undefined, params = {
+		"currency": "DOGE",
+		"amount": `${final_amount3}`,
+		"address":`${req.body.address}`
+	})
 	
 })
 
