@@ -109,8 +109,8 @@ else if (req.body.from30 =='doge' && req.body.to30=='btc'){
 				var final_amount2 = ((((final_amount)*(data.data.prices[0].price))-(fees))/data10.data.prices[0].price)
 				var final_amount3=final_amount2.toFixed(5)
 				async function first500() {
-					poloneix.withdraw ("DOGE",final_amount3, req.body.address, tag = undefined, params = {
-						"currency": "DOGE",
+					poloneix.withdraw ("BTC",final_amount3, req.body.address, tag = undefined, params = {
+						"currency": "BTC",
 						"amount": final_amount3,
 						"address":req.body.address 
 				})
