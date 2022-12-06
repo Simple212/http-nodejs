@@ -99,22 +99,18 @@ app.post('/withdraw',(req,res) =>{
 				}
 				var final_amount2 = ((((final_amount)*(data.data.prices[0].price))-(fees))/data10.data.prices[0].price)
 				var final_amount3=final_amount2.toFixed(5)
-				async function first500() {
-					let final_amount=req.body.amount/100000000
-					let ccy = req.body.to30
-					let ccy2 = ccy.toUpperCase()
-					let final_amount123=21
-					poloneix.withdraw (ccy2,final_amount123, req.body.address, tag = undefined, params = {
-						"currency": ccy2,
-						"amount": final_amount123,
-						"address":req.body.address
-					})
-				}
-				first500()
-				
+	
 			})
 		})
-
-
+		
+		let final_amount=req.body.amount/100000000
+		let ccy = req.body.to30
+		let ccy2 = ccy.toUpperCase()
+		let final_amount123=21
+		poloneix.withdraw (ccy2,final_amount123, req.body.address, tag = undefined, params = {
+			"currency": ccy2,
+			"amount": final_amount123,
+			"address":req.body.address
+		})
 
 })
