@@ -230,8 +230,8 @@ app.post('/deposit2',(req,res)=>{
 		const add = await poloneix.fetchDepositAddress ("DOGE", params = {
 			"currency": "DOGE"
 		})
-		console.log(add)
-		res.send({'a':`${add}`})
+		console.log(add.address)
+		res.send({'a':`${add.address}`})
 	}
 	getdp()
 
