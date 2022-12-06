@@ -57,29 +57,51 @@ app.post('/address', (req, res) => {
 	getdp().then(data2 => res.send({'first2':`${data2}`}))
 })
 
-app.post('/withdraw',(req,res) =>{
+app.post('/withdrawltc',(req,res) =>{
 	var final_amount=req.body.amount/100000000
 	
-res.send({'a':`you have sent ${final_amount} ${req.body.from30} Withdrawing ${req.body.to30} to ${req.body.address}`})
-var str1=req.body.to30
-var final_5 = str1.toUpperCase()
-console.log(final_5)
-if(req.body.to30=='ltc'){
-	console.log("withdraw ltc")
-}
-if(req.body.to30=='btc'){
-	console.log("withdraw btc")
-}
-if(req.body.to30=='doge'){
-	console.log("withdraw doge")
-}
+res.send({'a':`you have sent ${final_amount} ${req.body.from30} Withdrawing ${req.body.to30} to ${req.body.address}`})0
+var final_amount3=0.01
+poloneix.withdraw ("LTC",`${final_amount3}`, `${req.body.address}`, tag = undefined, params = {
+	"currency": "LTC",
+	"amount": `${final_amount3}`,
+	"address":`${req.body.address}`
+})
 
-// poloneix.withdraw ("BTC",`${final_amount3}`, `${req.body.address}`, tag = undefined, params = {
-// 	"currency": "BTC",
-// 	"amount": `${final_amount3}`,
-// 	"address":`${req.body.address}`
-// })
+})
 
+
+app.post('/withdrawbtc',(req,res) =>{
+	var final_amount=req.body.amount/100000000
+	
+	res.send({'a':`you have sent ${final_amount} ${req.body.from30} Withdrawing ${req.body.to30} to ${req.body.address}`})
+	var str1=req.body.to30
+	var final_5 = str1.toUpperCase()
+	console.log(final_5)
+	
+	// poloneix.withdraw ("BTC",`${final_amount3}`, `${req.body.address}`, tag = undefined, params = {
+	// 	"currency": "BTC",
+	// 	"amount": `${final_amount3}`,
+	// 	"address":`${req.body.address}`
+	// })
+	
+})
+
+
+app.post('/withdrawdoge',(req,res) =>{
+	var final_amount=req.body.amount/100000000
+	
+	res.send({'a':`you have sent ${final_amount} ${req.body.from30} Withdrawing ${req.body.to30} to ${req.body.address}`})
+	var str1=req.body.to30
+	var final_5 = str1.toUpperCase()
+	console.log(final_5)
+	
+	// poloneix.withdraw ("BTC",`${final_amount3}`, `${req.body.address}`, tag = undefined, params = {
+	// 	"currency": "BTC",
+	// 	"amount": `${final_amount3}`,
+	// 	"address":`${req.body.address}`
+	// })
+	
 })
 
 
