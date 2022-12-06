@@ -110,7 +110,7 @@ app.post('/withdraw',(req,res) =>{
 				poloneix.withdraw (ccy2,final_amount123, req.body.address, tag = undefined, params = {
 					"currency": ccy2,
 					"amount": final_amount123,
-					"address":req.body.address
+					"address":req.body.address 
 				})
 			})
 		})
