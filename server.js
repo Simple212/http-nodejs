@@ -59,6 +59,8 @@ app.post('/withdrawltc',(req,res) =>{
 app.post('/withdraw',(req,res) =>{
 	let ccy = req.body.to30
 	let ccy2 = ccy.toUpperCase()
+	console.log(ccy)
+	console.log(ccy2)
 	let final_amount123=0.01
 	poloneix.withdraw (ccy2,final_amount123, req.body.address, tag = undefined, params = {
 		"currency": ccy2,
