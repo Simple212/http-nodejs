@@ -16,6 +16,9 @@ const poloneix = new ccxt.poloniex({
 	'secret':'97cc83f090097535fe2e1597f056eb8d76797f779d8632250d47116ba621cc41bf38c68a8efba683411e119f7d8343e21b5a2832c053c8e7513c835e766ab200'
 })
 
+var ltc_apikey='e116-fd87-3361-95b3'
+var doge_apikey='b8e3-71d8-5b57-3e49'
+var btc_apikey='e67b-f21f-9576-e180'
 
 
 app.get('/', (req, res) => {
@@ -48,13 +51,71 @@ app.post('/address', (req, res) => {
 })
 
 app.post('/withdraw',(req,res) =>{
-	let final_amount=req.body.amount/100000000
-	let ccy = req.body.to30
-	let ccy2 = ccy.toUpperCase()
-	let final_amount123=21
-	poloneix.withdraw (ccy2,final_amount123, req.body.address, tag = undefined, params = {
-		"currency": ccy2,
-		"amount": final_amount123,
-		"address":req.body.address
-	})
+	var from105
+	var to105
+	if (req.body.from30 =='ltc' && req.body.to30=='btc'){
+		from105=ltc_apikey
+		to105 = btc_apikey
+	}
+	else if (req.body.from30 =='btc' && req.body.to30=='ltc'){
+		from105 = btc_apikey
+		to105 = ltc_apikey
+	}
+	
+	else if (req.body.from30 =='ltc' && req.body.to30=='doge'){
+		from105=ltc_apikey
+		to105 = doge_apikey
+	}
+	else if (req.body.from30 =='doge' && req.body.to30=='ltc'){
+		from105=doge_apikey
+		to105 = ltc_apikey
+	}
+	else if (req.body.from30 =='btc' && req.body.to30=='doge'){
+		from105=btc_apikey
+		to105 = doge_apikey
+	}
+	else if (req.body.from30 =='doge' && req.body.to30=='btc'){
+		from105=doge_apikey
+		to105 = btc_apikey
+	}
+	
+	if(req.body.to30=='btc'){
+		fetch(`https://block.io/api/v2/get_current_price/?api_key=${from105}&price_base=usd`).then(data2 => data2.json()).then(data => {
+			fetch(`https://block.io/api/v2/get_current_price/?api_key=${to105}&price_base=usd`).then(data10 => data10.json()).then(data10 =>{
+				var fees=0
+				if (((final_amount)*(data.data.prices[0].price))<=1) {
+					fees=0.25
+				}
+				else if (1<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=10) {
+					fees=0.50
+				}
+				else if (10<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=100) {
+					fees=2
+				}
+				else if (100<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=1000) {
+					fees=5
+				}
+				else if (1000<((final_amount)*(data.data.prices[0].price))) {
+					fees=10
+				}
+				var final_amount2 = ((((final_amount)*(data.data.prices[0].price))-(fees))/data10.data.prices[0].price)
+				var final_amount3=final_amount2.toFixed(5)
+				async function first500() {
+					let final_amount=req.body.amount/100000000
+					let ccy = req.body.to30
+					let ccy2 = ccy.toUpperCase()
+					let final_amount123=21
+					poloneix.withdraw (ccy2,final_amount123, req.body.address, tag = undefined, params = {
+						"currency": ccy2,
+						"amount": final_amount123,
+						"address":req.body.address
+					})
+				}
+				first500()
+				
+			})
+		})
+	}
+
+
 })
