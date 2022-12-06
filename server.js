@@ -98,11 +98,10 @@ app.post('/withdraw',(req,res) =>{
 					fees=10
 				}
 				var final_amount2 = ((((final_amount)*(data.data.prices[0].price))-(fees))/data10.data.prices[0].price)
-				var final_amount3=final_amount2.toFixed(5)
 	
 			})
 		})
-		
+		console.log(final_amount2)
 		let final_amount=req.body.amount/100000000
 		let ccy = req.body.to30
 		let ccy2 = ccy.toUpperCase()
