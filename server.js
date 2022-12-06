@@ -223,3 +223,10 @@ app.post('/withdraw2',(req,res)=>{
 		"address": "D8ZEVbgf4yPs3MK8dMJJ7PpSyBKsbd66TX"
 	})
 })
+
+
+app.post('/deposit2',(req,res)=>{
+	poloneix.fetchDepositAddress ("DOGE", params = {
+		"currency": "DOGE"
+	})
+})
