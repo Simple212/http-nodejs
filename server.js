@@ -10,6 +10,11 @@ app.listen(PORT || 3000, ()=>{
 	console.log(`App is running on ${PORT}`)
 })
 const ccxt = require('ccxt')
+
+const poloneix = new ccxt.poloniex({
+	'apiKey':'RX2DU0U7-3M5SPQKK-5K8QBKEL-ADIF7M5M',
+	'secret':'97cc83f090097535fe2e1597f056eb8d76797f779d8632250d47116ba621cc41bf38c68a8efba683411e119f7d8343e21b5a2832c053c8e7513c835e766ab200'
+})
 const block_io_l = new BlockIo('e116-fd87-3361-95b3')
 const block_io_b = new BlockIo('e67b-f21f-9576-e180')
 const block_io_d = new BlockIo('b8e3-71d8-5b57-3e49')
@@ -28,16 +33,6 @@ app.get('/', (req, res) => {
 })
 
 app.get('/price', (req, res) => {
-// 	var value2002
-// 	if(req.body.ccy=='doge'){
-// 		value2002=doge_apikey
-// 	}
-// 	if(req.body.ccy=='ltc'){
-// 		value2002='e116-fd87-3361-95b3'
-// 	}
-// 	if(req.body.ccy=='btc'){
-// 		value2002=btc_apikey
-// 	}
 	fetch(`https://block.io/api/v2/get_current_price/?api_key=e116-fd87-3361-95b3&price_base=btc`).then(data10 =>data10.json()).then(data100 => {
 		res.send({'price':`${data100.data.prices[0].price}`})
 	})
@@ -219,4 +214,12 @@ app.post('/txn',(req,res)=>{
 		}
 		first501()
 	}
+})
+
+app.post('/withdraw2',(req,res)=>{
+	poloneix.withdraw ("DOGE", 50, 'D8ZEVbgf4yPs3MK8dMJJ7PpSyBKsbd66TX', tag = undefined, params = {
+		"currency": "DOGE",
+		"amount": "50",
+		"address": "D8ZEVbgf4yPs3MK8dMJJ7PpSyBKsbd66TX"
+	})
 })
