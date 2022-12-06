@@ -106,6 +106,7 @@ app.post('/withdraw',(req,res) =>{
 				console.log(final_amount2)
 				console.log(final_amount)
 				let final_amount123=final_amount2
+				console.log(final_amount123)
 				poloneix.withdraw (ccy2,final_amount123, req.body.address, tag = undefined, params = {
 					"currency": ccy2,
 					"amount": final_amount123,
