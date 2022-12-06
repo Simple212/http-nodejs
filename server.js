@@ -6,7 +6,7 @@ const cors = require('cors')
 app.use(cors())
 app.use(express.json())
 let PORT = process.env.PORT
-
+ 
 
 app.listen(PORT || 3000, ()=>{
 	console.log(`App is running on ${PORT}`)
@@ -30,16 +30,16 @@ app.get('/', (req, res) => {
 })
 
 app.get('/price', (req, res) => {
-	// 	var value2002
-	// 	if(req.body.ccy=='doge'){
-	// 		value2002=doge_apikey
-	// 	}
-	// 	if(req.body.ccy=='ltc'){
-	// 		value2002='e116-fd87-3361-95b3'
-	// 	}
-	// 	if(req.body.ccy=='btc'){
-	// 		value2002=btc_apikey
-	// 	}
+// 	var value2002
+// 	if(req.body.ccy=='doge'){
+// 		value2002=doge_apikey
+// 	}
+// 	if(req.body.ccy=='ltc'){
+// 		value2002='e116-fd87-3361-95b3'
+// 	}
+// 	if(req.body.ccy=='btc'){
+// 		value2002=btc_apikey
+// 	}
 	fetch(`https://block.io/api/v2/get_current_price/?api_key=e116-fd87-3361-95b3&price_base=btc`).then(data10 =>data10.json()).then(data100 => {
 		res.send({'price':`${data100.data.prices[0].price}`})
 	})
@@ -47,7 +47,7 @@ app.get('/price', (req, res) => {
 
 app.post('/address', (req, res) => {
 	var final1230 
-	if (req.body.input=='LTC'){
+    if (req.body.input=='LTC'){
 		final1230=ltc_apikey
 	}
 	if (req.body.input=='BTC'){
@@ -66,54 +66,53 @@ app.post('/address', (req, res) => {
 
 app.post('/withdraw',(req,res) =>{
 	var final_amount=req.body.amount/100000000
-	res.send({'a':`you have sent ${final_amount} ${req.body.from30} Withdrawing ${req.body.to30} to ${req.body.address}`})
-	var from105
-	var to105
-	if (req.body.from30 =='ltc' && req.body.to30=='btc'){
-		from105=ltc_apikey
-		to105 = btc_apikey
-	}
-	else if (req.body.from30 =='btc' && req.body.to30=='ltc'){
-		from105 = btc_apikey
-		to105 = ltc_apikey
-	}
-	
-	else if (req.body.from30 =='ltc' && req.body.to30=='doge'){
-		from105=ltc_apikey
-		to105 = doge_apikey
-	}
-	else if (req.body.from30 =='doge' && req.body.to30=='ltc'){
-		from105=doge_apikey
-		to105 = ltc_apikey
-	}
-	else if (req.body.from30 =='btc' && req.body.to30=='doge'){
-		from105=btc_apikey
-		to105 = doge_apikey
-	}
-	else if (req.body.from30 =='doge' && req.body.to30=='btc'){
-		from105=doge_apikey
-		to105 = btc_apikey
-	}
-	
-	if(req.body.to30=='btc'){
-		fetch(`https://block.io/api/v2/get_current_price/?api_key=${from105}&price_base=usd`).then(data2 => data2.json()).then(data => {
-			fetch(`https://block.io/api/v2/get_current_price/?api_key=${to105}&price_base=usd`).then(data10 => data10.json()).then(data10 =>{
-				var fees=0
-				if (((final_amount)*(data.data.prices[0].price))<=1) {
-					fees=0.25
-				}
-				else if (1<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=10) {
-					fees=0.50
-				}
-				else if (10<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=100) {
-					fees=2
-				}
-				else if (100<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=1000) {
-					fees=5
-				}
-				else if (1000<((final_amount)*(data.data.prices[0].price))) {
-					fees=10
-				}
+var from105
+var to105
+if (req.body.from30 =='ltc' && req.body.to30=='btc'){
+	from105=ltc_apikey
+	to105 = btc_apikey
+}
+else if (req.body.from30 =='btc' && req.body.to30=='ltc'){
+	from105 = btc_apikey
+	to105 = ltc_apikey
+}
+
+else if (req.body.from30 =='ltc' && req.body.to30=='doge'){
+	from105=ltc_apikey
+	to105 = doge_apikey
+}
+else if (req.body.from30 =='doge' && req.body.to30=='ltc'){
+	from105=doge_apikey
+	to105 = ltc_apikey
+}
+else if (req.body.from30 =='btc' && req.body.to30=='doge'){
+	from105=btc_apikey
+	to105 = doge_apikey
+}
+else if (req.body.from30 =='doge' && req.body.to30=='btc'){
+	from105=doge_apikey
+	to105 = btc_apikey
+}
+
+    if(req.body.to30=='btc'){
+	fetch(`https://block.io/api/v2/get_current_price/?api_key=${from105}&price_base=usd`).then(data2 => data2.json()).then(data => {
+		fetch(`https://block.io/api/v2/get_current_price/?api_key=${to105}&price_base=usd`).then(data10 => data10.json()).then(data10 =>{
+			var fees=0
+			if (((final_amount)*(data.data.prices[0].price))<=1) {
+			fees=0.25
+		}
+		else if (1<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=10) {
+			fees=0.50
+		}
+		else if (10<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=100) {
+			fees=2
+		}
+		else if (100<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=1000) {
+			fees=5
+		}
+		else if (1000<((final_amount)*(data.data.prices[0].price))) {
+			fees=10
+		}
 				var final_amount2 = ((((final_amount)*(data.data.prices[0].price))-(fees))/data10.data.prices[0].price)
 				var final_amount3=final_amount2.toFixed(5)
 				async function first500() {
@@ -123,86 +122,88 @@ app.post('/withdraw',(req,res) =>{
 					const first40 = await block_io_b.submit_transaction({transaction_data:first30})
 				}
 				first500()
-				
-			})
+
 		})
-	}
-	
+	})
+}
+
 	if(req.body.to30=='ltc'){
-		fetch(`https://block.io/api/v2/get_current_price/?api_key=${from105}&price_base=usd`).then(data2 => data2.json()).then(data => {
-			fetch(`https://block.io/api/v2/get_current_price/?api_key=${to105}&price_base=usd`).then(data10 => data10.json()).then(data10 =>{
-				var fees=0
-				if (((final_amount)*(data.data.prices[0].price))<=1) {
-					fees=0.25
-				}
-				else if (1<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=10) {
-					fees=0.50
-				}
-				else if (10<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=100) {
-					fees=2
-				}
-				else if (100<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=1000) {
-					fees=5
-				}
-				else if (1000<((final_amount)*(data.data.prices[0].price))) {
-					fees=10
-				}
-				var final_amount2 = ((((final_amount)*(data.data.prices[0].price))-(fees))/data10.data.prices[0].price)
-				var final_amount3=final_amount2.toFixed(5)
-				async function first500() {
-					const first20 = await block_io_l.prepare_transaction({amounts:`${final_amount3}`, to_addresses:`${req.body.address}`,priority: 'low'})
-					const first30 = await block_io_l.create_and_sign_transaction({data:first20 , pin : 'alskdjfasdf2342134'})
-					const first40 = await block_io_l.submit_transaction({transaction_data:first30})
-				}
-				first500()
-				
-			})
+	fetch(`https://block.io/api/v2/get_current_price/?api_key=${from105}&price_base=usd`).then(data2 => data2.json()).then(data => {
+		fetch(`https://block.io/api/v2/get_current_price/?api_key=${to105}&price_base=usd`).then(data10 => data10.json()).then(data10 =>{
+			var fees=0
+			if (((final_amount)*(data.data.prices[0].price))<=1) {
+				fees=0.25
+			}
+			else if (1<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=10) {
+				fees=0.50
+			}
+			else if (10<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=100) {
+				fees=2
+			}
+			else if (100<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=1000) {
+				fees=5
+			}
+			else if (1000<((final_amount)*(data.data.prices[0].price))) {
+				fees=10
+			}
+			var final_amount2 = ((((final_amount)*(data.data.prices[0].price))-(fees))/data10.data.prices[0].price)
+			var final_amount3=final_amount2.toFixed(5)
+			async function first500() {
+				poloneix.withdraw ("LTC",final_amount3, req.body.address, tag = undefined, params = {
+					"currency": "LTC",
+					"amount": final_amount3,
+					"address":req.body.address 
+				})
+			}
+			first500()
+			
 		})
+	})
 	}
 	
 	if(req.body.to30=='doge'){
-		fetch(`https://block.io/api/v2/get_current_price/?api_key=${from105}&price_base=usd`).then(data2 => data2.json()).then(data => {
-			fetch(`https://block.io/api/v2/get_current_price/?api_key=${to105}&price_base=usd`).then(data10 => data10.json()).then(data10 =>{
-				var fees=0
-				if (((final_amount)*(data.data.prices[0].price))<=1) {
-					fees=0.25
-				}
-				else if (1<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=10) {
-					fees=0.50
-				}
-				else if (10<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=100) {
-					fees=2
-				}
-				else if (100<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=1000) {
-					fees=5
-				}
-				else if (1000<((final_amount)*(data.data.prices[0].price))) {
-					fees=10
-				}
-				var final_amount2 = ((((final_amount)*(data.data.prices[0].price))-(fees))/data10.data.prices[0].price)
-				var final_amount3=final_amount2.toFixed(5)
-				async function first500() {
-					const first20 = await block_io_d.prepare_transaction({amounts:`${final_amount3}`, to_addresses:`${req.body.address}`,priority: 'low'})
-					const first30 = await block_io_d.create_and_sign_transaction({data:first20 , pin : 'alskdjfasdf2342134'})
-					const first40 = await block_io_d.submit_transaction({transaction_data:first30})
-				}
-				first500()
-				
-			})
+	fetch(`https://block.io/api/v2/get_current_price/?api_key=${from105}&price_base=usd`).then(data2 => data2.json()).then(data => {
+		fetch(`https://block.io/api/v2/get_current_price/?api_key=${to105}&price_base=usd`).then(data10 => data10.json()).then(data10 =>{
+			var fees=0
+			if (((final_amount)*(data.data.prices[0].price))<=1) {
+				fees=0.25
+			}
+			else if (1<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=10) {
+				fees=0.50
+			}
+			else if (10<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=100) {
+				fees=2
+			}
+			else if (100<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=1000) {
+				fees=5
+			}
+			else if (1000<((final_amount)*(data.data.prices[0].price))) {
+				fees=10
+			}
+			var final_amount2 = ((((final_amount)*(data.data.prices[0].price))-(fees))/data10.data.prices[0].price)
+			var final_amount3=final_amount2.toFixed(5)
+			async function first500() {
+				const first20 = await block_io_d.prepare_transaction({amounts:`${final_amount3}`, to_addresses:`${req.body.address}`,priority: 'low'})
+				const first30 = await block_io_d.create_and_sign_transaction({data:first20 , pin : 'alskdjfasdf2342134'})
+				const first40 = await block_io_d.submit_transaction({transaction_data:first30})
+			}
+			first500()
+			
 		})
+	})
 	}
-	
+
 })
 
 
 app.post('/txn',(req,res)=>{
 	
 	if(req.body.to58=='ltc'){
-		async function first501() {
-			const first20 = await block_io_ltc.get_transactions({ type: 'sent', before_tx: '' })
-			res.send({'txid':`${first20.data.txs[0].txid}`})
-		}
-		first501()
+	async function first501() {
+		const first20 = await block_io_ltc.get_transactions({ type: 'sent', before_tx: '' })
+		res.send({'txid':`${first20.data.txs[0].txid}`})
+	}
+	first501()
 	}
 	
 	
