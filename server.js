@@ -97,7 +97,7 @@ app.post('/withdraw',(req,res) =>{
 				else if (1000<((final_amount)*(data.data.prices[0].price))) {
 					fees=10
 				}
-				let final_amount2 = ((((final_amount)*(data.data.prices[0].price))-(fees))/data10.data.prices[0].price)
+				let final_amount2 = (((((req.body.amount)/100000000)*(data.data.prices[0].price))-(fees))/data10.data.prices[0].price)
 				let final_amount=req.body.amount/100000000
 				let ccy = req.body.to30
 				let ccy2 = ccy.toUpperCase()
