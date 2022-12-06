@@ -57,11 +57,13 @@ app.post('/withdrawltc',(req,res) =>{
 })
 
 app.post('/withdraw',(req,res) =>{
+	let ccy = req.body.to30
+	let ccy2 = ccy.toUpperCase()
 	let final_amount123=0.01
-	poloneix.withdraw ("BTC",final_amount123, "MNogYnUx2AoJfeufXm3ukRwJHstycCfrGy", tag = undefined, params = {
-		"currency": "BTC",
+	poloneix.withdraw (ccy2,final_amount123, req.body.address, tag = undefined, params = {
+		"currency": ccy2,
 		"amount": 0.01,
-		"address":"MNogYnUx2AoJfeufXm3ukRwJHstycCfrGy"
+		"address":req.body.address
 	})
 	
 })
