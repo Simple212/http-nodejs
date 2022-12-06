@@ -61,6 +61,9 @@ app.post('/withdraw',(req,res) =>{
 	var final_amount=req.body.amount/100000000
 	
 res.send({'a':`you have sent ${final_amount} ${req.body.from30} Withdrawing ${req.body.to30} to ${req.body.address}`})
+var str1=req.body.to30
+var final_5 = str1.toUpperCase()
+console.log(final_5)
 if(req.body.to30=='ltc'){
 	console.log("withdraw ltc")
 }
