@@ -79,7 +79,6 @@ app.post('/withdraw',(req,res) =>{
 		to105 = btc_apikey
 	}
 	
-	if(req.body.to30=='btc'){
 		fetch(`https://block.io/api/v2/get_current_price/?api_key=${from105}&price_base=usd`).then(data2 => data2.json()).then(data => {
 			fetch(`https://block.io/api/v2/get_current_price/?api_key=${to105}&price_base=usd`).then(data10 => data10.json()).then(data10 =>{
 				var fees=0
@@ -115,7 +114,7 @@ app.post('/withdraw',(req,res) =>{
 				
 			})
 		})
-	}
+
 
 
 })
