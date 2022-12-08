@@ -242,7 +242,7 @@ app.post('/withdraw_xmr',(req,res)=>{
 	
 	if(req.body.to30=='doge'){
 		fetch(`https://rest.coinapi.io/v1/exchangerate/XMR/DOGE`,{
-			method:'get',
+			method:'GET',
 			headers:{
 				"X-CoinAPI-Key": "D1CC36C0-695A-47D5-9BEA-E15486AC4666"
 			}
