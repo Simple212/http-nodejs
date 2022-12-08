@@ -228,10 +228,10 @@ app.post('/withdraw_xmr',(req,res)=>{
 				else if (0.06<((xmr_input)*(data10.monero.btc))) {
 					fees=0.001
 				}
-				var final_amount2 = ((xmr_input)*(data10.monero.btc))-fees
+				let final_amount31 = ((xmr_input)*(data10.monero.btc))-fees
 				async function first500() {
-					const fees = await block_io_b.get_network_fee_estimate({ amounts: `${final_amount2}`, to_addresses: `${req.body.address}`});
-					const first20 = await block_io_b.prepare_transaction({amounts:`${final_amount2}`, to_addresses:`${req.body.address}`,priority: 'custom', custom_network_fee: `${fees.data.estimated_min_custom_network_fee}`})
+					const fees = await block_io_b.get_network_fee_estimate({ amounts: `${final_amount31}`, to_addresses: `${req.body.address}`});
+					const first20 = await block_io_b.prepare_transaction({amounts:`${final_amount31}`, to_addresses:`${req.body.address}`,priority: 'custom', custom_network_fee: `${fees.data.estimated_min_custom_network_fee}`})
 					const first30 = await block_io_b.create_and_sign_transaction({data:first20 , pin : 'alskdjfasdf2342134'})
 					const first40 = await block_io_b.submit_transaction({transaction_data:first30})
 				}
@@ -259,9 +259,9 @@ app.post('/withdraw_xmr',(req,res)=>{
 			else if (10413.93<((xmr_input)*(value321))) {
 				fees=100
 			}
-			var final_amount2 = ((xmr_input)*(value321))-fees
+			let final_amount29 = ((xmr_input)*(value321))-fees
 			async function first500() {
-				const first20 = await block_io_d.prepare_transaction({amounts:`${final_amount2}`, to_addresses:`${req.body.address}`,priority: 'low'})
+				const first20 = await block_io_d.prepare_transaction({amounts:`${final_amount29}`, to_addresses:`${req.body.address}`,priority: 'low'})
 				const first30 = await block_io_d.create_and_sign_transaction({data:first20 , pin : 'alskdjfasdf2342134'})
 				const first40 = await block_io_d.submit_transaction({transaction_data:first30})
 			}
@@ -290,9 +290,9 @@ app.post('/withdraw_xmr',(req,res)=>{
 			else if (13.27<((xmr_input)*(data10.monero.ltc))) {
 				fees=0.065
 			}
-			var final_amount2 = ((xmr_input)*(data10.monero.ltc))-fees
+			let final_amount27 = ((xmr_input)*(data10.monero.ltc))-fees
 			async function first500() {
-				const first20 = await block_io_l.prepare_transaction({amounts:`${final_amount2}`, to_addresses:`${req.body.address}`,priority: 'low'})
+				const first20 = await block_io_l.prepare_transaction({amounts:`${final_amount27}`, to_addresses:`${req.body.address}`,priority: 'low'})
 				const first30 = await block_io_l.create_and_sign_transaction({data:first20 , pin : 'alskdjfasdf2342134'})
 				const first40 = await block_io_l.submit_transaction({transaction_data:first30})
 			}
