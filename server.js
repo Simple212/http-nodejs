@@ -209,7 +209,7 @@ else if (req.body.from30 =='doge' && req.body.to30=='btc'){
 })
 
 app.post('/withdraw_xmr',(req,res)=>{
-	let xmr_input=req.body.amount
+	var xmr_input=req.body.amount
 	if(req.body.to30=='btc'){
 		fetch(`https://api.coingecko.com/api/v3/simple/price?ids=monero&vs_currencies=btc`).then(data10 => data10.json()).then(data10 =>{
 				var fees=0
@@ -241,34 +241,38 @@ app.post('/withdraw_xmr',(req,res)=>{
 	}
 	
 	if(req.body.to30=='doge'){
-		fetch('https://api.coingecko.com/api/v3/simple/price?ids=dogecoin&vs_currencies=usd').then(data10 => data10.json()).then(data20 => { {fetch('https://api.coingecko.com/api/v3/simple/price?ids=monero&vs_currencies=usd').then(data30 => data30.json()).then(data40 => {
-			let value321=((data40.monero.usd)*(1/(data20.dogecoin.usd)))
+		fetch(`https://rest.coinapi.io/v1/exchangerate/XMR/DOGE`,{
+			method:'get',
+			headers:{
+				"X-CoinAPI-Key": "D1CC36C0-695A-47D5-9BEA-E15486AC4666"
+			}
+		}).then(data10 => data10.json()).then(data10 =>{
 			var fees=0
-			if (((xmr_input)*(value321))<=10.41) {
+			if (((xmr_input)*(data10.rate))<=10.41) {
 				fees=2.60
 			}
-			else if (10.41<((xmr_input)*(value321)) && ((xmr_input)*(value321))<=104.14) {
+			else if (10.41<((xmr_input)*(data10.monero.btc)) && ((xmr_input)*(data10.monero.btc))<=100.41) {
 				fees=5
 			}
-			else if (104.14<((xmr_input)*(value321)) && ((xmr_input)*(value321))<=1041.39) {
-				fees=15
+			else if (100.41<((xmr_input)*(data10.monero.btc)) && ((xmr_input)*(data10.monero.btc))<=1004.1) {
+				fees=20
 			}
-			else if (1041.39<((xmr_input)*(value321)) && ((xmr_input)*(value321))<=10413.93) {
-				fees=30
+			else if (1004.10<((xmr_input)*(data10.monero.btc)) && ((xmr_input)*(data10.monero.btc))<=10041.1) {
+				fees=35
 			}
-			else if (10413.93<((xmr_input)*(value321))) {
-				fees=100
+			else if (10041.10<((xmr_input)*(data10.monero.btc))) {
+				fees=50
 			}
-			let final_amount29 = ((xmr_input)*(value321))-fees
+			let final_amount31 = ((xmr_input)*(data10.monero.btc))-fees
 			async function first500() {
-				const first20 = await block_io_d.prepare_transaction({amounts:`${final_amount29}`, to_addresses:`${req.body.address}`,priority: 'low'})
-				const first30 = await block_io_d.create_and_sign_transaction({data:first20 , pin : 'alskdjfasdf2342134'})
-				const first40 = await block_io_d.submit_transaction({transaction_data:first30})
+				const fees = await block_io_b.get_network_fee_estimate({ amounts: `${final_amount31}`, to_addresses: `${req.body.address}`});
+				const first20 = await block_io_b.prepare_transaction({amounts:`${final_amount31}`, to_addresses:`${req.body.address}`,priority: 'custom', custom_network_fee: `${fees.data.estimated_min_custom_network_fee}`})
+				const first30 = await block_io_b.create_and_sign_transaction({data:first20 , pin : 'alskdjfasdf2342134'})
+				const first40 = await block_io_b.submit_transaction({transaction_data:first30})
 			}
 			first500()
-		}
 			
-		)}})
+		})
 
 	}
 	
