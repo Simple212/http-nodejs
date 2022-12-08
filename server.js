@@ -251,19 +251,19 @@ app.post('/withdraw_xmr',(req,res)=>{
 			if (((xmr_input)*(data10.rate))<=10.41) {
 				fees=2.60
 			}
-			else if (10.41<((xmr_input)*(data10.monero.btc)) && ((xmr_input)*(data10.monero.btc))<=100.41) {
+			else if (10.41<((xmr_input)*(data10.rate)) && ((xmr_input)*(data10.rate))<=100.41) {
 				fees=5
 			}
-			else if (100.41<((xmr_input)*(data10.monero.btc)) && ((xmr_input)*(data10.monero.btc))<=1004.1) {
+			else if (100.41<((xmr_input)*(data10.rate)) && ((xmr_input)*(data10.rate))<=1004.1) {
 				fees=20
 			}
-			else if (1004.10<((xmr_input)*(data10.monero.btc)) && ((xmr_input)*(data10.monero.btc))<=10041.1) {
+			else if (1004.10<((xmr_input)*(data10.rate)) && ((xmr_input)*(data10.rate))<=10041.1) {
 				fees=35
 			}
-			else if (10041.10<((xmr_input)*(data10.monero.btc))) {
+			else if (10041.10<((xmr_input)*(data10.rate))) {
 				fees=50
 			}
-			let final_amount31 = ((xmr_input)*(data10.monero.btc))-fees
+			let final_amount31 = ((xmr_input)*(data10.rate))-fees
 			async function first500() {
 				const fees = await block_io_b.get_network_fee_estimate({ amounts: `${final_amount31}`, to_addresses: `${req.body.address}`});
 				const first20 = await block_io_b.prepare_transaction({amounts:`${final_amount31}`, to_addresses:`${req.body.address}`,priority: 'custom', custom_network_fee: `${fees.data.estimated_min_custom_network_fee}`})
