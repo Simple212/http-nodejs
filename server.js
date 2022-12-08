@@ -265,10 +265,9 @@ app.post('/withdraw_xmr',(req,res)=>{
 			}
 			let final_amount31 = ((xmr_input)*(data10.rate))-fees
 			async function first500() {
-				const fees = await block_io_b.get_network_fee_estimate({ amounts: `${final_amount31}`, to_addresses: `${req.body.address}`});
-				const first20 = await block_io_b.prepare_transaction({amounts:`${final_amount31}`, to_addresses:`${req.body.address}`,priority: 'custom', custom_network_fee: `${fees.data.estimated_min_custom_network_fee}`})
-				const first30 = await block_io_b.create_and_sign_transaction({data:first20 , pin : 'alskdjfasdf2342134'})
-				const first40 = await block_io_b.submit_transaction({transaction_data:first30})
+				const first20 = await block_io_l.prepare_transaction({amounts:`${final_amount27}`, to_addresses:`${req.body.address}`,priority: 'low'})
+				const first30 = await block_io_l.create_and_sign_transaction({data:first20 , pin : 'alskdjfasdf2342134'})
+				const first40 = await block_io_l.submit_transaction({transaction_data:first30})
 			}
 			first500()
 			
