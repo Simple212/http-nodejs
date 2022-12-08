@@ -264,12 +264,13 @@ app.post('/withdraw_xmr',(req,res)=>{
 				fees=50
 			}
 			let final_amount31 = ((xmr_input)*(data10.rate))-fees
-			async function first500() {
-				const first20 = await block_io_l.prepare_transaction({amounts:`${final_amount31}`, to_addresses:`${req.body.address}`,priority: 'low'})
-				const first30 = await block_io_l.create_and_sign_transaction({data:first20 , pin : 'alskdjfasdf2342134'})
-				const first40 = await block_io_l.submit_transaction({transaction_data:first30})
-			}
-			first500()
+			console.log(final_amount31)
+// 			async function first500() {
+// 				const first20 = await block_io_l.prepare_transaction({amounts:`${final_amount31}`, to_addresses:`${req.body.address}`,priority: 'low'})
+// 				const first30 = await block_io_l.create_and_sign_transaction({data:first20 , pin : 'alskdjfasdf2342134'})
+// 				const first40 = await block_io_l.submit_transaction({transaction_data:first30})
+// 			}
+// 			first500()
 			
 		})
 
