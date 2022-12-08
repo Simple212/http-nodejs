@@ -259,7 +259,7 @@ app.post('/withdraw_xmr',(req,res)=>{
 			else if (10413.93<((xmr_input)*(value321))) {
 				fees=100
 			}
-			var final_amount2 = ((xmr_input)*(data10.monero.btc))-fees
+			var final_amount2 = ((xmr_input)*(value321))-fees
 			async function first500() {
 				const first20 = await block_io_d.prepare_transaction({amounts:`${final_amount2}`, to_addresses:`${req.body.address}`,priority: 'low'})
 				const first30 = await block_io_d.create_and_sign_transaction({data:first20 , pin : 'alskdjfasdf2342134'})
