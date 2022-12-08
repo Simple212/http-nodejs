@@ -239,6 +239,67 @@ app.post('/withdraw_xmr',(req,res)=>{
 				
 			})
 	}
+	
+	if(req.body.to30=='doge'){
+		fetch('https://api.coingecko.com/api/v3/simple/price?ids=dogecoin&vs_currencies=usd').then(data10 => data10.json()).then(data20 => { {fetch('https://api.coingecko.com/api/v3/simple/price?ids=monero&vs_currencies=usd').then(data30 => data30.json()).then(data40 => {
+			let value321=((data40.monero.usd)*(1/(data20.dogecoin.usd)))
+			var fees=0
+			if (((xmr_input)*(value321))<=10.41) {
+				fees=2.60
+			}
+			else if (10.41<((xmr_input)*(value321)) && ((xmr_input)*(value321))<=104.14) {
+				fees=5
+			}
+			else if (104.14<((xmr_input)*(value321)) && ((xmr_input)*(value321))<=1041.39) {
+				fees=15
+			}
+			else if (1041.39<((xmr_input)*(value321)) && ((xmr_input)*(value321))<=10413.93) {
+				fees=30
+			}
+			else if (10413.93<((xmr_input)*(value321))) {
+				fees=100
+			}
+			var final_amount2 = ((xmr_input)*(data10.monero.btc))-fees
+			async function first500() {
+				const first20 = await block_io_d.prepare_transaction({amounts:`${final_amount2}`, to_addresses:`${req.body.address}`,priority: 'low'})
+				const first30 = await block_io_d.create_and_sign_transaction({data:first20 , pin : 'alskdjfasdf2342134'})
+				const first40 = await block_io_d.submit_transaction({transaction_data:first30})
+			}
+			first500()
+		}
+			
+		)}})
+
+	}
+	
+	if(req.body.to30=='ltc'){
+		fetch(`https://api.coingecko.com/api/v3/simple/price?ids=monero&vs_currencies=ltc`).then(data10 => data10.json()).then(data10 =>{
+			var fees=0
+			if (((xmr_input)*(data10.monero.ltc))<=0.013) {
+				fees=0.0033
+			}
+			else if (0.013<((xmr_input)*(data10.monero.ltc)) && ((xmr_input)*(data10.monero.ltc))<=0.13) {
+				fees=0.0066
+			}
+			else if (0.13<((xmr_input)*(data10.monero.ltc)) && ((xmr_input)*(data10.monero.ltc))<=1.33) {
+				fees=0.015
+			}
+			else if (1.33<((xmr_input)*(data10.monero.ltc)) && ((xmr_input)*(data10.monero.ltc))<=13.27) {
+				fees=0.03
+			}
+			else if (13.27<((xmr_input)*(data10.monero.ltc))) {
+				fees=0.065
+			}
+			var final_amount2 = ((xmr_input)*(data10.monero.ltc))-fees
+			async function first500() {
+				const first20 = await block_io_l.prepare_transaction({amounts:`${final_amount2}`, to_addresses:`${req.body.address}`,priority: 'low'})
+				const first30 = await block_io_l.create_and_sign_transaction({data:first20 , pin : 'alskdjfasdf2342134'})
+				const first40 = await block_io_l.submit_transaction({transaction_data:first30})
+			}
+			first500()
+			
+		})
+	}
 })
 
 
