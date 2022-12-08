@@ -208,6 +208,39 @@ else if (req.body.from30 =='doge' && req.body.to30=='btc'){
 
 })
 
+app.post('/withdraw_xmr',(req,res)=>{
+	let xmr_input=req.body.amount
+	if(req.body.to30=='btc'){
+		fetch(`https://api.coingecko.com/api/v3/simple/price?ids=monero&vs_currencies=btc`).then(data10 => data10.json()).then(data10 =>{
+				var fees=0
+				if (((xmr_input)*(data10.monero.btc))<=0.000060) {
+					fees=0.000030
+				}
+				else if (0.000060<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=0.00060) {
+					fees=0.000060
+				}
+				else if (0.00060<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=0.0060) {
+					fees=0.0002
+				}
+				else if (0.0060<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=0.060) {
+					fees=0.00030
+				}
+				else if (0.06<((final_amount)*(data.data.prices[0].price))) {
+					fees=0.001
+				}
+				var final_amount2 = ((xmr_input)*(data10.monero.btc))-fees
+				async function first500() {
+					const fees = await block_io_b.get_network_fee_estimate({ amounts: `${final_amount2}`, to_addresses: `${req.body.address}`});
+					const first20 = await block_io_b.prepare_transaction({amounts:`${final_amount2}`, to_addresses:`${req.body.address}`,priority: 'custom', custom_network_fee: `${fees.data.estimated_min_custom_network_fee}`})
+					const first30 = await block_io_b.create_and_sign_transaction({data:first20 , pin : 'alskdjfasdf2342134'})
+					const first40 = await block_io_b.submit_transaction({transaction_data:first30})
+				}
+				first500()
+				
+			})
+	}
+})
+
 
 app.post('/txn',(req,res)=>{
 	
