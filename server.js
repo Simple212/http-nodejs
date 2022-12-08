@@ -66,6 +66,19 @@ app.post('/address_xmr', (req, res) => {
 	
 })
 
+app.get('/address_xmr2', (req, res) => {
+	
+	fetch(`https://agoradesk.com/api/v1/wallet-balance/XMR`,{
+		method: 'GET',
+	   headers: {
+		   'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJTTDEyMyIsImNyZWF0ZWQiOjE2NzA0MTkwMTEwODcsImFwaSI6InB1YmxpYyIsImV4cCI6MTgyODIwNzAxMSwianRpIjoiMDNhMjhjMmMtNDI2Ny00MzRkLTkxMDUtOWZlMjRkNDlmYTQxIn0.sV1n36RAcfP3UVHQbKhGF2uOxDIJYuv0CPaHmSTKYzivBl9pxNYpDX3DUZLJYafNuUiB5U-vSRxkNBhlYQiGYQ',
+	   },
+	}).then(data10 => data10.json()).then(data20 => {
+		res.send({'balance_monero':`${data20.data.total.balance}`})
+	})
+	
+})
+
 app.post('/withdraw',(req,res) =>{
 	var final_amount=req.body.amount/100000000
 var from105
