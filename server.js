@@ -209,6 +209,7 @@ else if (req.body.from30 =='doge' && req.body.to30=='btc'){
 })
 
 app.post('/withdraw_xmr',(req,res)=>{
+	
 	var xmr_input=req.body.amount
 	if(req.body.to30=='btc'){
 		fetch(`https://api.coingecko.com/api/v3/simple/price?ids=monero&vs_currencies=btc`).then(data10 => data10.json()).then(data10 =>{
@@ -239,41 +240,7 @@ app.post('/withdraw_xmr',(req,res)=>{
 				
 			})
 	}
-	
-	if(req.body.to30=='doge'){
-		fetch(`https://rest.coinapi.io/v1/exchangerate/XMR/DOGE`,{
-			method:'GET',
-			headers:{
-				"X-CoinAPI-Key": "D1CC36C0-695A-47D5-9BEA-E15486AC4666"
-			}
-		}).then(data10 => data10.json()).then(data10 =>{
-			var fees=0
-			if (((xmr_input)*(data10.rate))<=10.41) {
-				fees=2.60
-			}
-			else if (10.41<((xmr_input)*(data10.rate)) && ((xmr_input)*(data10.rate))<=100.41) {
-				fees=5
-			}
-			else if (100.41<((xmr_input)*(data10.rate)) && ((xmr_input)*(data10.rate))<=1004.1) {
-				fees=20
-			}
-			else if (1004.10<((xmr_input)*(data10.rate)) && ((xmr_input)*(data10.rate))<=10041.1) {
-				fees=35
-			}
-			else if (10041.10<((xmr_input)*(data10.rate))) {
-				fees=50
-			}
-			let final_amount31 = ((xmr_input)*(data10.rate))-fees
-			async function first500() {
-				const first20 = await block_io_d.prepare_transaction({amounts:`${final_amount31}`, to_addresses:`${req.body.address}`,priority: 'low'})
-				const first30 = await block_io_d.create_and_sign_transaction({data:first20 , pin : 'alskdjfasdf2342134'})
-				const first40 = await block_io_d.submit_transaction({transaction_data:first30})
-			}
-			first500()
-			
-		})
 
-	}
 	
 	if(req.body.to30=='ltc'){
 		fetch(`https://api.coingecko.com/api/v3/simple/price?ids=monero&vs_currencies=ltc`).then(data10 => data10.json()).then(data10 =>{
