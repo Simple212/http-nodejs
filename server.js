@@ -216,16 +216,16 @@ app.post('/withdraw_xmr',(req,res)=>{
 				if (((xmr_input)*(data10.monero.btc))<=0.000060) {
 					fees=0.000030
 				}
-				else if (0.000060<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=0.00060) {
+				else if (0.000060<((xmr_input)*(data10.monero.btc)) && ((xmr_input)*(data10.monero.btc))<=0.00060) {
 					fees=0.000060
 				}
-				else if (0.00060<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=0.0060) {
+				else if (0.000060<((xmr_input)*(data10.monero.btc)) && ((xmr_input)*(data10.monero.btc))<=0.006) {
 					fees=0.0002
 				}
-				else if (0.0060<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=0.060) {
+				else if (0.000060<((xmr_input)*(data10.monero.btc)) && ((xmr_input)*(data10.monero.btc))<=0.06) {
 					fees=0.00030
 				}
-				else if (0.06<((final_amount)*(data.data.prices[0].price))) {
+				else if (0.06<((xmr_input)*(data10.monero.btc))) {
 					fees=0.001
 				}
 				var final_amount2 = ((xmr_input)*(data10.monero.btc))-fees
