@@ -68,10 +68,10 @@ app.post('/address_xmr', (req, res) => {
 
 app.post('/address_bnb', (req, res) => {
 
-            fetch(`https://coinremitter.com/api/v3/BNB/get-new-address`,{
+            fetch(`https://coinremitter.com/api/v3/BCH/get-new-address`,{
 			method: 'POST',
 			body: JSON.stringify({
-				'api_key':'$2y$10$oRlxF0tWjZIouPjiXx1Ileqnv8qT1jm7vIXoQuxbvT8LEP2dgrsoy',
+				'api_key':'$2y$10$KklbdSLdugTjQtJpxA0iQOrd8NJqK28jbDyFqLtFyEdGEWk93JK16',
 				'password':'t3_AZSXDCFV'
 			})
 			
