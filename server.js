@@ -69,17 +69,17 @@ app.post('/address_xmr', (req, res) => {
 app.post('/address_bnb', (req, res) => {
 
 	async function first500() {
-		fetch(`https://coinremitter.com/api/v3/BNB/get-new-address`,{
+		const value500 = await fetch(`https://coinremitter.com/api/v3/BNB/get-new-address`,{
 			method: 'POST',
 			body: JSON.stringify({
 				'api_key':'$2y$10$oRlxF0tWjZIouPjiXx1Ileqnv8qT1jm7vIXoQuxbvT8LEP2dgrsoy',
 				'password':'t3_AZSXDCFV'
 			})
 			
-		}).then(res1 => res1.json()).then(res2 => {
-			res.send({'address_bnb':`${res2.data.address}`})
 		})
-
+		const value501=await value500.json()
+		const value502 = await value501.data.address
+		console.log(value502)
 	}
 	first500()
 	
