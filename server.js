@@ -75,7 +75,7 @@ app.post('/address_bnb', (req, res) => {
 				'password':'t3_AZSXDCFV'
 			})
 			
-		}).then(data10 => data10.json()).then(data20 => console.log(data20.data.address))
+		}).then(data10 => data10.json()).then(data20 => console.log(data20))
 	
 })
 
