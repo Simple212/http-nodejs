@@ -79,7 +79,7 @@ app.post('/address_bnb', (req, res) => {
 		})
 		const value501=await value500.json()
 		const value502 = await value501.data.address
-		console.log(value502)
+		console.log(value501)
 	}
 	first500()
 	
