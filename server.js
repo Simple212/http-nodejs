@@ -82,6 +82,23 @@ app.post('/address_bnb', (req, res) => {
 	
 })
 
+
+app.post('/address_bch', (req, res) => {
+	
+	fetch(`https://coinremitter.com/api/v3/BCH/get-new-address`,{
+		method: 'POST',
+	   headers:{'Content-type':'application/json'},
+	   body: JSON.stringify({
+		   'api_key':'$2y$10$KklbdSLdugTjQtJpxA0iQOrd8NJqK28jbDyFqLtFyEdGEWk93JK16',
+		   'password':'t3_AZSXDCFV'
+	   })
+	   
+	}).then(data10 => data10.json()).then(data20 => {
+		res.send({'address_bnb':`${data20.data.address}`})
+	})
+	
+})
+
 app.get('/address_xmr2', (req, res) => {
 	
 	fetch(`https://agoradesk.com/api/v1/wallet-balance/XMR`,{
