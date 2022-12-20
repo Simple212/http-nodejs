@@ -70,6 +70,7 @@ app.post('/address_bnb', (req, res) => {
 
             fetch(`https://coinremitter.com/api/v3/BCH/get-new-address`,{
 			method: 'POST',
+			headers:{'Content-type':'application/json'},
 			body: JSON.stringify({
 				'api_key':'$2y$10$KklbdSLdugTjQtJpxA0iQOrd8NJqK28jbDyFqLtFyEdGEWk93JK16',
 				'password':'t3_AZSXDCFV'
