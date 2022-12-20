@@ -99,6 +99,22 @@ app.post('/address_bch', (req, res) => {
 	
 })
 
+app.post('/address_xmr', (req, res) => {
+	
+	fetch(`https://coinremitter.com/api/v3/XMR/get-new-address`,{
+		method: 'POST',
+	   headers:{'Content-type':'application/json'},
+	   body: JSON.stringify({
+		   'api_key':'$2y$10$5U404C1TW5LeerWAsaiYc.CHR6sP.V5KjHAJgETbre2Tsw8kzgzC6',
+		   'password':'t3_AZSXDCFV'
+	   })
+	   
+	}).then(data10 => data10.json()).then(data20 => {
+		res.send({'address_xmr':`${data20.data.address}`})
+	})
+	
+})
+
 app.get('/address_xmr2', (req, res) => {
 	
 	fetch(`https://agoradesk.com/api/v1/wallet-balance/XMR`,{
