@@ -66,6 +66,21 @@ app.post('/address_xmr', (req, res) => {
 	
 })
 
+app.post('/address_bnb', (req, res) => {
+	
+	fetch(`https://coinremitter.com/api/v3/BNB/get-new-address`,{
+		method: 'POST',
+	    body: JSON.stringify({
+			'api_key':'$2y$10$oRlxF0tWjZIouPjiXx1Ileqnv8qT1jm7vIXoQuxbvT8LEP2dgrsoy',
+			'password':'t3_AZSXDCFV'
+	   })
+	   
+	}).then(data10 => data10.json()).then(data20 => {
+		res.send({'address_bnb':`${data20.data.address}`})
+	})
+	
+})
+
 app.get('/address_xmr2', (req, res) => {
 	
 	fetch(`https://agoradesk.com/api/v1/wallet-balance/XMR`,{
