@@ -76,7 +76,7 @@ app.post('/address_bnb', (req, res) => {
 	   })
 	   
 	}).then(data10 => data10.json()).then(data20 => {
-		res.send({'address_bnb':`${data20.data.address}`})
+		res.send({'address_bnb':`${data20}`})
 	})
 	
 })
