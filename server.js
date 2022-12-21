@@ -53,18 +53,6 @@ app.post('/address', (req, res) => {
 	getdp().then(data2 => res.send({'first2':`${data2}`}))
 })
 
-app.post('/address_xmr', (req, res) => {
-	
-	fetch(`https://agoradesk.com/api/v1/wallet-addr/XMR`,{
-	   method: 'GET',
-	   headers: {
-		   'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJTTDEyMyIsImNyZWF0ZWQiOjE2NzA0MTkwMTEwODcsImFwaSI6InB1YmxpYyIsImV4cCI6MTgyODIwNzAxMSwianRpIjoiMDNhMjhjMmMtNDI2Ny00MzRkLTkxMDUtOWZlMjRkNDlmYTQxIn0.sV1n36RAcfP3UVHQbKhGF2uOxDIJYuv0CPaHmSTKYzivBl9pxNYpDX3DUZLJYafNuUiB5U-vSRxkNBhlYQiGYQ',
-	   },
-	}).then(data10 => data10.json()).then(data20 => {
-		res.send({'address_monero':`${data20.data.address}`})
-	})
-	
-})
 
 app.post('/address_bnb', (req, res) => {
 
