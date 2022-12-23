@@ -339,8 +339,9 @@ app.post('/txn',(req,res)=>{
 })
 
 app.post('/withdraw_bnb',(req,res)=>{
-
-	var bnb_input=req.body.amount
+	
+	var first_bnb=req.body.amount
+	var bnb_input=(first_bnb/1000000000000000)
 
 	if(req.body.to30=='btc'){
 		fetch(`https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=btc`).then(data10 => data10.json()).then(data10 =>{
@@ -427,7 +428,7 @@ app.post('/withdraw_bnb',(req,res)=>{
 					'body': JSON.stringify({
 						'api_key':'$2y$10$KklbdSLdugTjQtJpxA0iQOrd8NJqK28jbDyFqLtFyEdGEWk93JK16',
 						'password':'t3_AZSXDCFV',
-						'to_address':`asdf`,
+						'to_address':`${req.body.address}`,
 						'amount':`${final_amount27}`
 					})
 				})
