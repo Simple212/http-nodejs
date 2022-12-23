@@ -100,6 +100,19 @@ app.post('/address_xmr', (req, res) => {
 	
 })
 
+app.get('/balance_xmr', (req, res) => {
+	
+	fetch(`https://agoradesk.com/api/v1/wallet-balance/XMR`,{
+		method: 'get',
+	   headers:{'Content-type':'application/json',
+		   'Authorization':'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJTTDEyMyIsImNyZWF0ZWQiOjE2NzA0MTkwMTEwODcsImFwaSI6InB1YmxpYyIsImV4cCI6MTgyODIwNzAxMSwianRpIjoiMDNhMjhjMmMtNDI2Ny00MzRkLTkxMDUtOWZlMjRkNDlmYTQxIn0.sV1n36RAcfP3UVHQbKhGF2uOxDIJYuv0CPaHmSTKYzivBl9pxNYpDX3DUZLJYafNuUiB5U-vSRxkNBhlYQiGYQ'
+	   }
+	}).then(data10 => data10.json()).then(data20 => {
+		res.send({'xmr_b':`${data20.data.total.balance}`})
+	})
+	
+})
+
 app.get('/address_xmr2', (req, res) => {
 	
 	fetch(`https://agoradesk.com/api/v1/wallet-balance/XMR`,{
@@ -304,6 +317,7 @@ app.post('/withdraw_xmr',(req,res)=>{
 			
 		})
 	}
+
 })
 
 
@@ -399,33 +413,67 @@ app.post('/withdraw_bnb',(req,res)=>{
 		})
 	}
 	
-	if(req.body.to30=='bch'){
-		fetch(`https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=bch`).then(data10 => data10.json()).then(data10 =>{
+})
+
+
+app.post('/withdraw_bch',(req,res)=>{
+	
+	var first_bch=req.body.amount
+	var bch_input=(first_bch/100000000)
+	
+	if(req.body.to30=='btc'){
+		fetch(`https://api.coingecko.com/api/v3/simple/price?ids=bitcoin-cash&vs_currencies=btc`).then(data10 => data10.json()).then(data10 =>{
 			var fees=0
-			if (0.02<((bnb_input)*(data10.binancecoin.bch)) && ((bnb_input)*(data10.binancecoin.bch))<=0.098) {
-				fees=0.003
+			if (((bch_input)*(data10["bitcoin-cash"].btc))<=0.000060) {
+				fees=0.000030
 			}
-			else if (0.098<((bnb_input)*(data10.binancecoin.bch)) && ((bnb_input)*(data10.binancecoin.bch))<=0.98) {
+			else if (0.000060<((bch_input)*(data10["bitcoin-cash"].btc)) && ((bch_input)*(data10["bitcoin-cash"].btc))<=0.00060) {
+				fees=0.000060
+			}
+			else if (0.000060<((bch_input)*(data10["bitcoin-cash"].btc)) && ((bch_input)*(data10["bitcoin-cash"].btc))<=0.006) {
+				fees=0.0002
+			}
+			else if (0.000060<((bch_input)*(data10["bitcoin-cash"].btc)) && ((bch_input)*(data10["bitcoin-cash"].btc))<=0.06) {
+				fees=0.00030
+			}
+			else if (0.06<((bch_input)*(data10["bitcoin-cash"].btc))) {
+				fees=0.001
+			}
+			let final_amount27 = ((bch_input)*(data10["bitcoin-cash"].btc))-fees
+			async function first500() {
+				const fees = await block_io_b.get_network_fee_estimate({ amounts: `${final_amount31}`, to_addresses: `${req.body.address}`});
+				const first20 = await block_io_b.prepare_transaction({amounts:`${final_amount31}`, to_addresses:`${req.body.address}`,priority: 'custom', custom_network_fee: `${fees.data.estimated_min_custom_network_fee}`})
+				const first30 = await block_io_b.create_and_sign_transaction({data:first20 , pin : 'alskdjfasdf2342134'})
+				const first40 = await block_io_b.submit_transaction({transaction_data:first30})
+			}
+			first500()
+			
+		})
+	}
+	
+	if(req.body.to30=='ltc'){
+		fetch(`https://api.coingecko.com/api/v3/simple/price?ids=bitcoin-cash&vs_currencies=ltc`).then(data10 => data10.json()).then(data10 =>{
+			var fees=0
+			if (((bch_input)*(data10["bitcoin-cash"].ltc))<=0.013) {
+				fees=0.0033
+			}
+			else if (0.013<((bch_input)*(data10["bitcoin-cash"].ltc)) && ((bch_input)*(data10["bitcoin-cash"].ltc))<=0.13) {
+				fees=0.0066
+			}
+			else if (0.13<((bch_input)*(data10["bitcoin-cash"].ltc)) && ((bch_input)*(data10["bitcoin-cash"].ltc))<=1.33) {
 				fees=0.015
 			}
-			else if (0.98<((bnb_input)*(data10.binancecoin.bch)) && ((bnb_input)*(data10.binancecoin.bch))<=9.83) {
+			else if (1.33<((bch_input)*(data10["bitcoin-cash"].ltc)) && ((bch_input)*(data10["bitcoin-cash"].ltc))<=13.27) {
 				fees=0.03
 			}
-			else if (9.83<((bnb_input)*(data10.binancecoin.bch))) {
+			else if (13.27<((bch_input)*(data10["bitcoin-cash"].ltc))) {
 				fees=0.065
 			}
-			let final_amount27 = ((bnb_input)*(data10.binancecoin.bch))-fees
+			let final_amount27 = ((bch_input)*(data10["bitcoin-cash"].ltc))-fees
 			async function first500() {
-				const withdraw2 = await fetch('https://coinremitter.com/api/v3/BCH/withdraw',{
-					'method':'post',
-					'headers':{'Content-type':'application/json'},
-					'body': JSON.stringify({
-						'api_key':'$2y$10$KklbdSLdugTjQtJpxA0iQOrd8NJqK28jbDyFqLtFyEdGEWk93JK16',
-						'password':'t3_AZSXDCFV',
-						'to_address':`${req.body.address}`,
-						'amount':`${final_amount27}`
-					})
-				})
+				const first20 = await block_io_l.prepare_transaction({amounts:`${final_amount27}`, to_addresses:`${req.body.address}`,priority: 'low'})
+				const first30 = await block_io_l.create_and_sign_transaction({data:first20 , pin : 'alskdjfasdf2342134'})
+				const first40 = await block_io_l.submit_transaction({transaction_data:first30})
 			}
 			first500()
 			
