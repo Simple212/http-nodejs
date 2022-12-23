@@ -337,3 +337,104 @@ app.post('/txn',(req,res)=>{
 		first501()
 	}
 })
+
+app.post('/withdraw_bnb',(req,res)=>{
+
+	var bnb_input=req.body.amount
+
+	if(req.body.to30=='btc'){
+		fetch(`https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=btc`).then(data10 => data10.json()).then(data10 =>{
+			var fees=0
+			if (((bnb_input)*(data10.binancecoin.btc))<=0.000060) {
+				fees=0.000030
+			}
+			else if (0.000060<((bnb_input)*(data10.binancecoin.btc)) && ((bnb_input)*(data10.binancecoin.btc))<=0.00060) {
+				fees=0.000060
+			}
+			else if (0.000060<((bnb_input)*(data10.binancecoin.btc)) && ((bnb_input)*(data10.binancecoin.btc))<=0.006) {
+				fees=0.0002
+			}
+			else if (0.000060<((bnb_input)*(data10.binancecoin.btc)) && ((bnb_input)*(data10.binancecoin.btc))<=0.06) {
+				fees=0.00030
+			}
+			else if (0.06<((bnb_input)*(data10.monero.btc))) {
+				fees=0.001
+			}
+			let final_amount27 = ((bnb_input)*(data10.binanceoin.btc))-fees
+			async function first500() {
+				const fees = await block_io_b.get_network_fee_estimate({ amounts: `${final_amount31}`, to_addresses: `${req.body.address}`});
+				const first20 = await block_io_b.prepare_transaction({amounts:`${final_amount31}`, to_addresses:`${req.body.address}`,priority: 'custom', custom_network_fee: `${fees.data.estimated_min_custom_network_fee}`})
+				const first30 = await block_io_b.create_and_sign_transaction({data:first20 , pin : 'alskdjfasdf2342134'})
+				const first40 = await block_io_b.submit_transaction({transaction_data:first30})
+			}
+			first500()
+			
+		})
+	}
+
+	if(req.body.to30=='ltc'){
+		fetch(`https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=ltc`).then(data10 => data10.json()).then(data10 =>{
+			var fees=0
+			if (((bnb_input)*(data10.binancecoin.ltc))<=0.013) {
+				fees=0.0033
+			}
+			else if (0.013<((bnb_input)*(data10.binancecoin.ltc)) && ((bnb_input)*(data10.binancecoin.ltc))<=0.13) {
+				fees=0.0066
+			}
+			else if (0.13<((bnb_input)*(data10.binancecoin.ltc)) && ((bnb_input)*(data10.binancecoin.ltc))<=1.33) {
+				fees=0.015
+			}
+			else if (1.33<((bnb_input)*(data10.binancecoin.ltc)) && ((bnb_input)*(data10.binancecoin.ltc))<=13.27) {
+				fees=0.03
+			}
+			else if (13.27<((xmr_input)*(data10.monero.ltc))) {
+				fees=0.065
+			}
+			let final_amount27 = ((xmr_input)*(data10.monero.ltc))-fees
+			async function first500() {
+				const first20 = await block_io_l.prepare_transaction({amounts:`${final_amount27}`, to_addresses:`${req.body.address}`,priority: 'low'})
+				const first30 = await block_io_l.create_and_sign_transaction({data:first20 , pin : 'alskdjfasdf2342134'})
+				const first40 = await block_io_l.submit_transaction({transaction_data:first30})
+			}
+			first500()
+			
+		})
+	}
+	
+	if(req.body.to30=='bch'){
+		fetch(`https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=bch`).then(data10 => data10.json()).then(data10 =>{
+			var fees=0
+			if (((bnb_input)*(data10.binancecoin.bch))<=0.0098) {
+				fees=0.0033
+			}
+			else if (0.013<((bnb_input)*(data10.binancecoin.bch)) && ((bnb_input)*(data10.binancecoin.bch))<=0.13) {
+				fees=0.0066
+			}
+			else if (0.13<((bnb_input)*(data10.binancecoin.bch)) && ((bnb_input)*(data10.binancecoin.bch))<=1.33) {
+				fees=0.015
+			}
+			else if (1.33<((bnb_input)*(data10.binancecoin.bch)) && ((bnb_input)*(data10.binancecoin.bch))<=13.27) {
+				fees=0.03
+			}
+			else if (13.27<((bnb_input)*(data10.binancecoin.bch))) {
+				fees=0.065
+			}
+			let final_amount27 = ((bnb_input)*(data10.binancecoin.bch))-fees
+			async function first500() {
+				const withdraw2 = await fetch('https://coinremitter.com/api/v3/BCH/withdraw',{
+					'method':'post',
+					'headers':{'Content-type':'application/json'},
+					'body': JSON.stringify({
+						'api_key':'$2y$10$KklbdSLdugTjQtJpxA0iQOrd8NJqK28jbDyFqLtFyEdGEWk93JK16',
+						'password':'t3_AZSXDCFV',
+						'to_address':`asdf`,
+						'amount':`${final_amount27}`
+					})
+				})
+			}
+			first500()
+			
+		})
+	}
+	
+})
