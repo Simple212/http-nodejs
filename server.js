@@ -89,14 +89,11 @@ app.post('/address_bch', (req, res) => {
 
 app.post('/address_xmr', (req, res) => {
 	
-	fetch(`https://coinremitter.com/api/v3/XMR/get-new-address`,{
-		method: 'POST',
-	   headers:{'Content-type':'application/json'},
-	   body: JSON.stringify({
-		   'api_key':'$2y$10$5U404C1TW5LeerWAsaiYc.CHR6sP.V5KjHAJgETbre2Tsw8kzgzC6',
-		   'password':'t3_AZSXDCFV'
-	   })
-	   
+	fetch(`https://agoradesk.com/api/v1/wallet-addr/XMR`,{
+		method: 'get',
+	   headers:{'Content-type':'application/json',
+'Authorization':'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJTTDEyMyIsImNyZWF0ZWQiOjE2NzA0MTkwMTEwODcsImFwaSI6InB1YmxpYyIsImV4cCI6MTgyODIwNzAxMSwianRpIjoiMDNhMjhjMmMtNDI2Ny00MzRkLTkxMDUtOWZlMjRkNDlmYTQxIn0.sV1n36RAcfP3UVHQbKhGF2uOxDIJYuv0CPaHmSTKYzivBl9pxNYpDX3DUZLJYafNuUiB5U-vSRxkNBhlYQiGYQ'
+	}
 	}).then(data10 => data10.json()).then(data20 => {
 		res.send({'address_xmr':`${data20.data.address}`})
 	})
@@ -405,19 +402,16 @@ app.post('/withdraw_bnb',(req,res)=>{
 	if(req.body.to30=='bch'){
 		fetch(`https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=bch`).then(data10 => data10.json()).then(data10 =>{
 			var fees=0
-			if (((bnb_input)*(data10.binancecoin.bch))<=0.0098) {
-				fees=0.0033
+			if (0.02<((bnb_input)*(data10.binancecoin.bch)) && ((bnb_input)*(data10.binancecoin.bch))<=0.098) {
+				fees=0.003
 			}
-			else if (0.013<((bnb_input)*(data10.binancecoin.bch)) && ((bnb_input)*(data10.binancecoin.bch))<=0.13) {
-				fees=0.0066
-			}
-			else if (0.13<((bnb_input)*(data10.binancecoin.bch)) && ((bnb_input)*(data10.binancecoin.bch))<=1.33) {
+			else if (0.098<((bnb_input)*(data10.binancecoin.bch)) && ((bnb_input)*(data10.binancecoin.bch))<=0.98) {
 				fees=0.015
 			}
-			else if (1.33<((bnb_input)*(data10.binancecoin.bch)) && ((bnb_input)*(data10.binancecoin.bch))<=13.27) {
+			else if (0.98<((bnb_input)*(data10.binancecoin.bch)) && ((bnb_input)*(data10.binancecoin.bch))<=9.83) {
 				fees=0.03
 			}
-			else if (13.27<((bnb_input)*(data10.binancecoin.bch))) {
+			else if (9.83<((bnb_input)*(data10.binancecoin.bch))) {
 				fees=0.065
 			}
 			let final_amount27 = ((bnb_input)*(data10.binancecoin.bch))-fees
