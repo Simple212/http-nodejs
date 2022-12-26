@@ -87,9 +87,9 @@ app.post('/address_dot', (req, res) => {
 		})
 		const value2=await value
 		console.log(value2)
-		return value2.data.address
+		return value2.address
 	}
-	getdp().then(data2 => res.send({'first2':`${data2}`}))
+	getdp().then(data2 => res.send({'dot':`${data2}`}))
 	
 })
 
