@@ -14,7 +14,8 @@ const ccxt = require('ccxt')
 
 const okx= new ccxt.okx({
 	'apiKey':'90c20bee-efbc-45c2-84e4-56b3d6bd0ae1',
-	'secret':'1AAE0C5188FF6FEC75074F729422FB26'	
+	'secret':'1AAE0C5188FF6FEC75074F729422FB26',
+	'password':'t3_AZSXDCFV'
 })
 
 const block_io_l = new BlockIo('e116-fd87-3361-95b3')
