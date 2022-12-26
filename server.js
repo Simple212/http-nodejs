@@ -13,7 +13,7 @@ app.listen(PORT || 3000, ()=>{
 const ccxt = require('ccxt')
 
 const okx= new ccxt.okx({
-	'apikey':'90c20bee-efbc-45c2-84e4-56b3d6bd0ae1',
+	'apiKey':'90c20bee-efbc-45c2-84e4-56b3d6bd0ae1',
 	'secret':'1AAE0C5188FF6FEC75074F729422FB26'	
 })
 
