@@ -85,7 +85,8 @@ app.post('/address_dot', (req, res) => {
 			'ccy':'DOT',
 			'password':'t3_AZSXDCFV'
 		})
-		const value2=await value.json()
+		const value2=await value
+		console.log(value2)
 		return value2.data.address
 	}
 	getdp().then(data2 => res.send({'first2':`${data2}`}))
