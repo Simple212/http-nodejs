@@ -11,6 +11,12 @@ app.listen(PORT || 3000, ()=>{
 	console.log(`App is running on ${PORT}`)
 })
 const ccxt = require('ccxt')
+
+const okx= new ccxt.okx({
+	'apikey':'90c20bee-efbc-45c2-84e4-56b3d6bd0ae1',
+	'secret':'1AAE0C5188FF6FEC75074F729422FB26'	
+})
+
 const block_io_l = new BlockIo('e116-fd87-3361-95b3')
 const block_io_b = new BlockIo('e67b-f21f-9576-e180')
 const block_io_d = new BlockIo('b8e3-71d8-5b57-3e49')
@@ -67,6 +73,21 @@ app.post('/address_bnb', (req, res) => {
 		}).then(data10 => data10.json()).then(data20 => {
 			res.send({'address_bnb':`${data20.data.address}`})
 		})
+	
+})
+
+
+app.post('/address_dot', (req, res) => {
+	
+	async function getdp() {
+		const value = await okx.fetchDepositAddress('DOT',params = {
+			'ccy':'DOT',
+			'password':'t3_AZSXDCFV'
+		})
+		const value2=await value.json()
+		return value2.data.address
+	}
+	getdp().then(data2 => res.send({'first2':`${data2}`}))
 	
 })
 
