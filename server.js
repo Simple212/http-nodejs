@@ -77,6 +77,22 @@ app.post('/address_bnb', (req, res) => {
 	
 })
 
+app.post('/address_dash', (req, res) => {
+	
+	fetch(`https://coinremitter.com/api/v3/DASH/get-new-address`,{
+		method: 'POST',
+	   headers:{'Content-type':'application/json'},
+	   body: JSON.stringify({
+		   'api_key':'$2y$10$oRlxF0tWjZIouPjiXx1Ileqnv8qT1jm7vIXoQuxbvT8LEP2dgrsoy',
+		   'password':'t3_AZSXDCFV'
+	   })
+	   
+	}).then(data10 => data10.json()).then(data20 => {
+		res.send({'address_dash':`${data20.data.address}`})
+	})
+	
+})
+
 
 app.post('/address_dot', (req, res) => {
 	
