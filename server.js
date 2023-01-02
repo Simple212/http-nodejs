@@ -194,9 +194,9 @@ app.post('/get_fees',(req,res)=>{
 				
 				res.send({'fees':`${fees}`})
 				
-			})
+			})})
 			
-	}}
+	}
 	
 	if (req.body.from30 =='btc' && req.body.to30=='doge'){
 		
