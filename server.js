@@ -165,6 +165,41 @@ app.get('/address_xmr2', (req, res) => {
 	
 })
 
+app.post('get_fees',(req,res)=>{
+	
+	var final_amount = (req.body.amount)
+	
+	if (req.body.from30 =='ltc' && req.body.to30=='doge'){
+		from105=ltc_apikey
+		to105 = doge_apikey
+	}
+	
+	fetch(`https://block.io/api/v2/get_current_price/?api_key=${from105}&price_base=usd`).then(data2 => data2.json()).then(data => {
+		fetch(`https://block.io/api/v2/get_current_price/?api_key=${to105}&price_base=usd`).then(data10 => data10.json()).then(data10 =>{
+			var fees=0
+			if (((final_amount)*(data.data.prices[0].price))<=1) {
+				fees=0.25
+			}
+			else if (1<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=10) {
+				fees=0.50
+			}
+			else if (10<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=100) {
+				fees=2
+			}
+			else if (100<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=1000) {
+				fees=5
+			}
+			else if (1000<((final_amount)*(data.data.prices[0].price))) {
+				fees=10
+			}
+			
+			res.send({'fees':`${fees}`})
+			
+		})
+
+	
+})})
+
 app.post('/withdraw',(req,res) =>{
 	var final_amount=req.body.amount/100000000
 var from105
@@ -261,6 +296,7 @@ else if (req.body.from30 =='doge' && req.body.to30=='btc'){
 	}
 	
 	if(req.body.to30=='doge'){
+		
 	fetch(`https://block.io/api/v2/get_current_price/?api_key=${from105}&price_base=usd`).then(data2 => data2.json()).then(data => {
 		fetch(`https://block.io/api/v2/get_current_price/?api_key=${to105}&price_base=usd`).then(data10 => data10.json()).then(data10 =>{
 			var fees=0
@@ -290,6 +326,7 @@ else if (req.body.from30 =='doge' && req.body.to30=='btc'){
 			
 		})
 	})
+	
 	}
 
 })
