@@ -167,7 +167,7 @@ app.get('/address_xmr2', (req, res) => {
 
 app.post('/get_fees',(req,res)=>{
 	
-	let final_amount3 = (req.body.amount)
+	var final_amount3 = (req.body.amount)
 	
 	if (req.body.from30 =='ltc' && req.body.to30=='doge'){
 		from105=ltc_apikey
