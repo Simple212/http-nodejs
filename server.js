@@ -167,7 +167,7 @@ app.get('/address_xmr2', (req, res) => {
 
 app.post('/get_fees',(req,res)=>{
 	
-	var final_amount = (req.body.amount)
+	let final_amount3 = (req.body.amount)
 	
 	if (req.body.from30 =='ltc' && req.body.to30=='doge'){
 		from105=ltc_apikey
@@ -177,19 +177,19 @@ app.post('/get_fees',(req,res)=>{
 	fetch(`https://block.io/api/v2/get_current_price/?api_key=${from105}&price_base=usd`).then(data2 => data2.json()).then(data => {
 		fetch(`https://block.io/api/v2/get_current_price/?api_key=${to105}&price_base=usd`).then(data10 => data10.json()).then(data10 =>{
 			var fees=0
-			if (((final_amount)*(data.data.prices[0].price))<=1) {
+			if (((final_amount3)*(data.data.prices[0].price))<=1) {
 				fees=0.25
 			}
-			else if (1<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=10) {
+			else if (1<((final_amount3)*(data.data.prices[0].price)) && ((final_amount3)*(data.data.prices[0].price))<=10) {
 				fees=0.50
 			}
-			else if (10<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=100) {
+			else if (10<((final_amount3)*(data.data.prices[0].price)) && ((final_amount3)*(data.data.prices[0].price))<=100) {
 				fees=2
 			}
-			else if (100<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=1000) {
+			else if (100<((final_amount3)*(data.data.prices[0].price)) && ((final_amount3)*(data.data.prices[0].price))<=1000) {
 				fees=5
 			}
-			else if (1000<((final_amount)*(data.data.prices[0].price))) {
+			else if (1000<((final_amount3)*(data.data.prices[0].price))) {
 				fees=10
 			}
 			
