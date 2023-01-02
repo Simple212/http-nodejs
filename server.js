@@ -165,7 +165,7 @@ app.get('/address_xmr2', (req, res) => {
 	
 })
 
-app.post('get_fees',(req,res)=>{
+app.post('/get_fees',(req,res)=>{
 	
 	var final_amount = (req.body.amount)
 	
