@@ -497,7 +497,7 @@ if(req.body.from30=='bch' && req.body.to30=='ltc'){
 		else if (13.27<((bch_input)*(data10["bitcoin-cash"].ltc))) {
 			fees=0.065
 		}
-		res.send({'fees':`${fees}`})
+		res.send({'fees':`${fees}`}) 
 	})
 }
 
