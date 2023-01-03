@@ -348,7 +348,7 @@ if (req.body.from30 =='doge' && req.body.to30=='ltc'){
 	})
 }
 
-if(req.body.from=='xmr' && req.body.to30=='btc'){
+if(req.body.from30=='xmr' && req.body.to30=='btc'){
 	
 	fetch(`https://api.coingecko.com/api/v3/simple/price?ids=monero&vs_currencies=btc`).then(data10 => data10.json()).then(data10 =>{
 		var fees=0
@@ -372,7 +372,7 @@ if(req.body.from=='xmr' && req.body.to30=='btc'){
 	})
 }
 
-if(req.body.from=='xmr' && req.body.to30=='ltc'){
+if(req.body.from30=='xmr' && req.body.to30=='ltc'){
 	var xmr_input = (req.body.amount)
 	fetch(`https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=ltc`).then(data10 => data10.json()).then(data10 =>{
 		var fees=0
