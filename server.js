@@ -226,11 +226,281 @@ app.post('/get_fees',(req,res)=>{
 				
 			})
 	})
+}
 
+if (req.body.from30 =='ltc' && req.body.to30=='btc'){
+	
+	from105 = ltc_apikey
+	to105 = btc_apikey
+	
+	fetch(`https://block.io/api/v2/get_current_price/?api_key=${from105}&price_base=usd`).then(data2 => data2.json()).then(data => {
+		fetch(`https://block.io/api/v2/get_current_price/?api_key=${to105}&price_base=usd`).then(data10 => data10.json()).then(data10 =>{
+			var fees=0
+			if (((final_amount3)*(data.data.prices[0].price))<=1) {
+				fees=0.75
+			}
+			else if (1<((final_amount3)*(data.data.prices[0].price)) && ((final_amount3)*(data.data.prices[0].price))<=10) {
+				fees=1.50
+			}
+			else if (10<((final_amount3)*(data.data.prices[0].price)) && ((final_amount3)*(data.data.prices[0].price))<=100) {
+				fees=2.15
+			}
+			else if (100<((final_amount3)*(data.data.prices[0].price)) && ((final_amount3)*(data.data.prices[0].price))<=1000) {
+				fees=5.10
+			}
+			else if (1000<((final_amount3)*(data.data.prices[0].price))) {
+				fees=10
+			}
+			
+			res.send({'fees':`${fees}`})
+			
+		})
+	})
+}
 
+if (req.body.from30 =='doge' && req.body.to30=='btc'){
+	
+	from105 = doge_apikey
+	to105 = btc_apikey
+	
+	fetch(`https://block.io/api/v2/get_current_price/?api_key=${from105}&price_base=usd`).then(data2 => data2.json()).then(data => {
+		fetch(`https://block.io/api/v2/get_current_price/?api_key=${to105}&price_base=usd`).then(data10 => data10.json()).then(data10 =>{
+			var fees=0
+			if (((final_amount3)*(data.data.prices[0].price))<=1) {
+				fees=0.75
+			}
+			else if (1<((final_amount3)*(data.data.prices[0].price)) && ((final_amount3)*(data.data.prices[0].price))<=10) {
+				fees=1.50
+			}
+			else if (10<((final_amount3)*(data.data.prices[0].price)) && ((final_amount3)*(data.data.prices[0].price))<=100) {
+				fees=2.15
+			}
+			else if (100<((final_amount3)*(data.data.prices[0].price)) && ((final_amount3)*(data.data.prices[0].price))<=1000) {
+				fees=5.10
+			}
+			else if (1000<((final_amount3)*(data.data.prices[0].price))) {
+				fees=10
+			}
+			
+			res.send({'fees':`${fees}`})
+			
+		})
+	})
+}
+
+if (req.body.from30 =='btc' && req.body.to30=='ltc'){
+	
+	from105 = btc_apikey
+	to105 = ltc_apikey
+	
+	fetch(`https://block.io/api/v2/get_current_price/?api_key=${from105}&price_base=usd`).then(data2 => data2.json()).then(data => {
+		fetch(`https://block.io/api/v2/get_current_price/?api_key=${to105}&price_base=usd`).then(data10 => data10.json()).then(data10 =>{
+			var fees=0
+			if (((final_amount3)*(data.data.prices[0].price))<=1) {
+				fees=0.25
+			}
+			else if (1<((final_amount3)*(data.data.prices[0].price)) && ((final_amount3)*(data.data.prices[0].price))<=10) {
+				fees=0.50
+			}
+			else if (10<((final_amount3)*(data.data.prices[0].price)) && ((final_amount3)*(data.data.prices[0].price))<=100) {
+				fees=2.5
+			}
+			else if (100<((final_amount3)*(data.data.prices[0].price)) && ((final_amount3)*(data.data.prices[0].price))<=1000) {
+				fees=5
+			}
+			else if (1000<((final_amount3)*(data.data.prices[0].price))) {
+				fees=10
+			}
+			
+			res.send({'fees':`${fees}`})
+			
+		})
+	})
+}
+
+if (req.body.from30 =='doge' && req.body.to30=='ltc'){
+	
+	from105 = doge_apikey
+	to105 = ltc_apikey
+	
+	fetch(`https://block.io/api/v2/get_current_price/?api_key=${from105}&price_base=usd`).then(data2 => data2.json()).then(data => {
+		fetch(`https://block.io/api/v2/get_current_price/?api_key=${to105}&price_base=usd`).then(data10 => data10.json()).then(data10 =>{
+			var fees=0
+			if (((final_amount3)*(data.data.prices[0].price))<=1) {
+				fees=0.25
+			}
+			else if (1<((final_amount3)*(data.data.prices[0].price)) && ((final_amount3)*(data.data.prices[0].price))<=10) {
+				fees=0.50
+			}
+			else if (10<((final_amount3)*(data.data.prices[0].price)) && ((final_amount3)*(data.data.prices[0].price))<=100) {
+				fees=1.75
+			}
+			else if (100<((final_amount3)*(data.data.prices[0].price)) && ((final_amount3)*(data.data.prices[0].price))<=1000) {
+				fees=5.0
+			}
+			else if (1000<((final_amount3)*(data.data.prices[0].price))) {
+				fees=10
+			}
+			
+			res.send({'fees':`${fees}`})
+			
+		})
+	})
+}
+
+if(req.body.from=='xmr' && req.body.to30=='btc'){
+	
+	var xmr_input = (req.body.amount)
+	
+	fetch(`https://api.coingecko.com/api/v3/simple/price?ids=monero&vs_currencies=btc`).then(data10 => data10.json()).then(data10 =>{
+		var fees=0
+		if (((xmr_input)*(data10.monero.btc))<=0.000060) {
+			fees=0.000030
+		}
+		else if (0.000060<((xmr_input)*(data10.monero.btc)) && ((xmr_input)*(data10.monero.btc))<=0.00060) {
+			fees=0.000060
+		}
+		else if (0.000060<((xmr_input)*(data10.monero.btc)) && ((xmr_input)*(data10.monero.btc))<=0.006) {
+			fees=0.0002
+		}
+		else if (0.000060<((xmr_input)*(data10.monero.btc)) && ((xmr_input)*(data10.monero.btc))<=0.06) {
+			fees=0.00030
+		}
+		else if (0.06<((xmr_input)*(data10.monero.btc))) {
+			fees=0.001
+		}
+		res.send({'fees':`${fees}`})
+		
+	})
+}
+
+if(req.body.from=='xmr' && req.body.to30=='ltc'){
+	var xmr_input = (req.body.amount)
+	fetch(`https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=ltc`).then(data10 => data10.json()).then(data10 =>{
+		var fees=0
+		if (((xmr_input)*(data10.binancecoin.ltc))<=0.013) {
+			fees=0.0033
+		}
+		else if (0.013<((xmr_input)*(data10.binancecoin.ltc)) && ((xmr_input)*(data10.binancecoin.ltc))<=0.13) {
+			fees=0.0066
+		}
+		else if (0.13<((xmr_input)*(data10.binancecoin.ltc)) && ((xmr_input)*(data10.binancecoin.ltc))<=1.33) {
+			fees=0.015
+		}
+		else if (1.33<((xmr_input)*(data10.binancecoin.ltc)) && ((xmr_input)*(data10.binancecoin.ltc))<=13.27) {
+			fees=0.03
+		}
+		else if (13.27<((xmr_input)*(data10.monero.ltc))) {
+			fees=0.065
+		}
+		
+		res.send({'fees':`${fees}`})
+		
+	})
+}
+
+if(req.body.from30=='bnb' && req.body.to30=='btc'){
+	
+	var bnb_input=req.body.amount
+	
+	fetch(`https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=btc`).then(data10 => data10.json()).then(data10 =>{
+		var fees=0
+		if (((bnb_input)*(data10.binancecoin.btc))<=0.000060) {
+			fees=0.000030
+		}
+		else if (0.000060<((bnb_input)*(data10.binancecoin.btc)) && ((bnb_input)*(data10.binancecoin.btc))<=0.00060) {
+			fees=0.000060
+		}
+		else if (0.000060<((bnb_input)*(data10.binancecoin.btc)) && ((bnb_input)*(data10.binancecoin.btc))<=0.006) {
+			fees=0.0002
+		}
+		else if (0.000060<((bnb_input)*(data10.binancecoin.btc)) && ((bnb_input)*(data10.binancecoin.btc))<=0.06) {
+			fees=0.00030
+		}
+		else if (0.06<((bnb_input)*(data10.monero.btc))) {
+			fees=0.001
+		}
+		res.send({'fees':`${fees}`})
+		
+	})
 	
 }
-			
+
+
+
+if(req.body.from30=='bnb' && req.body.to30=='ltc'){
+	
+	var bnb_input=req.body.amount
+	
+	fetch(`https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=ltc`).then(data10 => data10.json()).then(data10 =>{
+		var fees=0
+		if (((bnb_input)*(data10.binancecoin.ltc))<=0.013) {
+			fees=0.0033
+		}
+		else if (0.013<((bnb_input)*(data10.binancecoin.ltc)) && ((bnb_input)*(data10.binancecoin.ltc))<=0.13) {
+			fees=0.0066
+		}
+		else if (0.13<((bnb_input)*(data10.binancecoin.ltc)) && ((bnb_input)*(data10.binancecoin.ltc))<=1.33) {
+			fees=0.015
+		}
+		else if (1.33<((bnb_input)*(data10.binancecoin.ltc)) && ((bnb_input)*(data10.binancecoin.ltc))<=13.27) {
+			fees=0.03
+		}
+		else if (13.27<((bnb_input)*(data10.binancecoin.ltc))) {
+			fees=0.065
+		}
+		res.send({'fees':`${fees}`})
+		
+	})
+	
+}
+
+if(req.body.from30=='bch' && req.body.to30=='btc'){
+	var bch_input=req.body.amount
+	fetch(`https://api.coingecko.com/api/v3/simple/price?ids=bitcoin-cash&vs_currencies=btc`).then(data10 => data10.json()).then(data10 =>{
+		var fees=0
+		if (((bch_input)*(data10["bitcoin-cash"].btc))<=0.000060) {
+			fees=0.000030
+		}
+		else if (0.000060<((bch_input)*(data10["bitcoin-cash"].btc)) && ((bch_input)*(data10["bitcoin-cash"].btc))<=0.00060) {
+			fees=0.000060
+		}
+		else if (0.000060<((bch_input)*(data10["bitcoin-cash"].btc)) && ((bch_input)*(data10["bitcoin-cash"].btc))<=0.006) {
+			fees=0.0002
+		}
+		else if (0.000060<((bch_input)*(data10["bitcoin-cash"].btc)) && ((bch_input)*(data10["bitcoin-cash"].btc))<=0.06) {
+			fees=0.00030
+		}
+		else if (0.06<((bch_input)*(data10["bitcoin-cash"].btc))) {
+			fees=0.001
+		}
+		res.send({'fees':`${fees}`})
+	})
+}
+
+if(req.body.from30=='bch' && req.body.to30=='ltc'){
+	var bch_input=req.body.amount
+	fetch(`https://api.coingecko.com/api/v3/simple/price?ids=bitcoin-cash&vs_currencies=ltc`).then(data10 => data10.json()).then(data10 =>{
+		var fees=0
+		if (((bch_input)*(data10["bitcoin-cash"].ltc))<=0.013) {
+			fees=0.0033
+		}
+		else if (0.013<((bch_input)*(data10["bitcoin-cash"].ltc)) && ((bch_input)*(data10["bitcoin-cash"].ltc))<=0.13) {
+			fees=0.0066
+		}
+		else if (0.13<((bch_input)*(data10["bitcoin-cash"].ltc)) && ((bch_input)*(data10["bitcoin-cash"].ltc))<=1.33) {
+			fees=0.015
+		}
+		else if (1.33<((bch_input)*(data10["bitcoin-cash"].ltc)) && ((bch_input)*(data10["bitcoin-cash"].ltc))<=13.27) {
+			fees=0.03
+		}
+		else if (13.27<((bch_input)*(data10["bitcoin-cash"].ltc))) {
+			fees=0.065
+		}
+		res.send({'fees':`${fees}`})
+	})
+}
+
 		})
 
 app.post('/withdraw',(req,res) =>{
@@ -268,16 +538,16 @@ else if (req.body.from30 =='doge' && req.body.to30=='btc'){
 		fetch(`https://block.io/api/v2/get_current_price/?api_key=${to105}&price_base=usd`).then(data10 => data10.json()).then(data10 =>{
 			var fees=0
 			if (((final_amount)*(data.data.prices[0].price))<=1) {
-			fees=0.25
+			fees=0.75
 		}
 		else if (1<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=10) {
-			fees=0.50
+			fees=1.50
 		}
 		else if (10<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=100) {
-			fees=2
+			fees=2.15
 		}
 		else if (100<((final_amount)*(data.data.prices[0].price)) && ((final_amount)*(data.data.prices[0].price))<=1000) {
-			fees=5
+			fees=5.10
 		}
 		else if (1000<((final_amount)*(data.data.prices[0].price))) {
 			fees=10
