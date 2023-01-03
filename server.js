@@ -278,8 +278,11 @@ if (req.body.from30 =='doge' && req.body.to30=='btc'){
 			else if (100<((final_amount3)*(data.data.prices[0].price)) && ((final_amount3)*(data.data.prices[0].price))<=1000) {
 				fees=5.10
 			}
-			else if (1000<((final_amount3)*(data.data.prices[0].price))) {
+			else if (1000<((final_amount3)*(data.data.prices[0].price))<=5000) {
 				fees=10
+			}
+			else if (5000<((final_amount3)*(data.data.prices[0].price))) {
+				fees=50
 			}
 			
 			res.send({'fees':`${fees}`})
@@ -306,10 +309,10 @@ if (req.body.from30 =='btc' && req.body.to30=='ltc'){
 				fees=2.5
 			}
 			else if (100<((final_amount3)*(data.data.prices[0].price)) && ((final_amount3)*(data.data.prices[0].price))<=1000) {
-				fees=12
+				fees=5
 			}
 			else if (1000<((final_amount3)*(data.data.prices[0].price))) {
-				fees=18
+				fees=10
 			}
 			
 			res.send({'fees':`${fees}`})
