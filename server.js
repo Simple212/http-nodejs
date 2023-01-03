@@ -377,18 +377,18 @@ if(req.body.from30=='xmr' && req.body.to30=='btc'){
 
 if(req.body.from30=='xmr' && req.body.to30=='ltc'){
 	var xmr_input = (req.body.amount)
-	fetch(`https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=ltc`).then(data10 => data10.json()).then(data10 =>{
+	fetch(`https://api.coingecko.com/api/v3/simple/price?ids=monero&vs_currencies=ltc`).then(data10 => data10.json()).then(data10 =>{
 		var fees=0
-		if (((xmr_input)*(data10.binancecoin.ltc))<=0.013) {
+		if (((xmr_input)*(data10.monero.ltc))<=0.013) {
 			fees=0.0033
 		}
-		else if (0.013<((xmr_input)*(data10.binancecoin.ltc)) && ((xmr_input)*(data10.binancecoin.ltc))<=0.13) {
+		else if (0.013<((xmr_input)*(data10.monero.ltc)) && ((xmr_input)*(data10.monero.ltc))<=0.13) {
 			fees=0.0066
 		}
-		else if (0.13<((xmr_input)*(data10.binancecoin.ltc)) && ((xmr_input)*(data10.binancecoin.ltc))<=1.33) {
+		else if (0.13<((xmr_input)*(data10.monero.ltc)) && ((xmr_input)*(data10.monero.ltc))<=1.33) {
 			fees=0.015
 		}
-		else if (1.33<((xmr_input)*(data10.binancecoin.ltc)) && ((xmr_input)*(data10.binancecoin.ltc))<=13.27) {
+		else if (1.33<((xmr_input)*(data10.monero.ltc)) && ((xmr_input)*(data10.monero.ltc))<=13.27) {
 			fees=0.03
 		}
 		else if (13.27<((xmr_input)*(data10.monero.ltc))) {
