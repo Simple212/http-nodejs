@@ -504,7 +504,7 @@ if(req.body.from30=='bch' && req.body.to30=='ltc'){
 
 if(req.body.from30=='dash' && req.body.to30=='btc'){
 	var dash_input=req.body.amount
-	fetch(`https://api.coingecko.com/api/v3/simple/price?ids=dashvs_currencies=btc`).then(data10 => data10.json()).then(data10 =>{
+	fetch(`https://api.coingecko.com/api/v3/simple/price?ids=dash&vs_currencies=btc`).then(data10 => data10.json()).then(data10 =>{
 		var fees=0 
 		if (((dash_input)*(data10.dash.btc))<=0.000060) { 
 			fees=0.000030
@@ -527,7 +527,7 @@ if(req.body.from30=='dash' && req.body.to30=='btc'){
 
 if(req.body.from30=='dash' && req.body.to30=='ltc'){
 	var dash_input=req.body.amount
-	fetch(`https://api.coingecko.com/api/v3/simple/price?ids=dashvs_currencies=ltc`).then(data10 => data10.json()).then(data10 =>{
+	fetch(`https://api.coingecko.com/api/v3/simple/price?ids=dash&vs_currencies=ltc`).then(data10 => data10.json()).then(data10 =>{
 		var fees=0 
 		if (((dash_input)*(data10.dash.ltc))<=0.013) { 
 			fees=0.0033
