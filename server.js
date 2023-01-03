@@ -481,7 +481,7 @@ if(req.body.from30=='bch' && req.body.to30=='btc'){
 if(req.body.from30=='bch' && req.body.to30=='ltc'){
 	var bch_input=req.body.amount
 	fetch(`https://api.coingecko.com/api/v3/simple/price?ids=bitcoin-cash&vs_currencies=ltc`).then(data10 => data10.json()).then(data10 =>{
-		var fees=0
+		var fees=0 
 		if (((bch_input)*(data10["bitcoin-cash"].ltc))<=0.013) {
 			fees=0.0033
 		}
