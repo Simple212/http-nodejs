@@ -502,6 +502,52 @@ if(req.body.from30=='bch' && req.body.to30=='ltc'){
 	})
 }
 
+if(req.body.from30=='dash' && req.body.to30=='btc'){
+	var dash_input=req.body.amount
+	fetch(`https://api.coingecko.com/api/v3/simple/price?ids=dashvs_currencies=btc`).then(data10 => data10.json()).then(data10 =>{
+		var fees=0 
+		if (((bch_input)*(data10.dash.btc))<=0.000060) { 
+			fees=0.000030
+		}
+		else if (0.000060<((bch_input)*(data10.dash.btc)) && ((bch_input)*(data10.dash.btc))<=0.0006) {
+			fees=0.000060
+		}
+		else if (0.0006<((bch_input)*(data10.dash.btc)) && ((bch_input)*(data10.dash.btc))<=0.06) {
+			fees=0.0002
+		}
+		else if (0.06<((bch_input)*(data10.dash.btc)) && ((bch_input)*(data10.dash.btc))<=0.6) {
+				fees=0.00030
+		}
+		else if (0.6<((bch_input)*(data10.dash.btc))) {
+			fees=0.001
+		}
+		res.send({'fees':`${fees}`}) 
+	})
+}
+
+if(req.body.from30=='dash' && req.body.to30=='ltc'){
+	var dash_input=req.body.amount
+	fetch(`https://api.coingecko.com/api/v3/simple/price?ids=dashvs_currencies=ltc`).then(data10 => data10.json()).then(data10 =>{
+		var fees=0 
+		if (((bch_input)*(data10.dash.ltc))<=0.013) { 
+			fees=0.0033
+		}
+		else if (0.013<((bch_input)*(data10.dash.ltc)) && ((bch_input)*(data10.dash.ltc))<=0.13) {
+			fees=0.0066
+		}
+		else if (0.13<((bch_input)*(data10.dash.ltc)) && ((bch_input)*(data10.dash.ltc))<=1.33) {
+			fees=0.015
+		}
+		else if (1.33<((bch_input)*(data10.dash.ltc)) && ((bch_input)*(data10.dash.ltc))<=13.27) {
+			fees=0.03
+		}
+		else if (13.27<((bch_input)*(data10.dash.ltc)) {
+			fees=0.065
+		}
+		res.send({'fees':`${fees}`}) 
+	})
+}
+
 		})
 
 app.post('/withdraw',(req,res) =>{
