@@ -306,10 +306,10 @@ if (req.body.from30 =='btc' && req.body.to30=='ltc'){
 				fees=2.5
 			}
 			else if (100<((final_amount3)*(data.data.prices[0].price)) && ((final_amount3)*(data.data.prices[0].price))<=1000) {
-				fees=5
+				fees=12
 			}
 			else if (1000<((final_amount3)*(data.data.prices[0].price))) {
-				fees=10
+				fees=18
 			}
 			
 			res.send({'fees':`${fees}`})
