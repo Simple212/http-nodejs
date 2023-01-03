@@ -350,23 +350,21 @@ if (req.body.from30 =='doge' && req.body.to30=='ltc'){
 
 if(req.body.from=='xmr' && req.body.to30=='btc'){
 	
-	var xmr_input = (req.body.amount)
-	
 	fetch(`https://api.coingecko.com/api/v3/simple/price?ids=monero&vs_currencies=btc`).then(data10 => data10.json()).then(data10 =>{
 		var fees=0
-		if (((xmr_input)*(data10.monero.btc))<=0.000060) {
+		if (((final_amount3)*(data10.monero.btc))<=0.000060) {
 			fees=0.000030
 		}
-		else if (0.000060<((xmr_input)*(data10.monero.btc)) && ((xmr_input)*(data10.monero.btc))<=0.00060) {
+		else if (0.000060<((final_amount3)*(data10.monero.btc)) && ((final_amount3)*(data10.monero.btc))<=0.00060) {
 			fees=0.000060
 		}
-		else if (0.000060<((xmr_input)*(data10.monero.btc)) && ((xmr_input)*(data10.monero.btc))<=0.006) {
+		else if (0.000060<((final_amount3)*(data10.monero.btc)) && ((final_amount3)*(data10.monero.btc))<=0.006) {
 			fees=0.0002
 		}
-		else if (0.000060<((xmr_input)*(data10.monero.btc)) && ((xmr_input)*(data10.monero.btc))<=0.06) {
+		else if (0.000060<((final_amount3)*(data10.monero.btc)) && ((final_amount3)*(data10.monero.btc))<=0.06) {
 			fees=0.00030
 		}
-		else if (0.06<((xmr_input)*(data10.monero.btc))) {
+		else if (0.06<((final_amount3)*(data10.monero.btc))) {
 			fees=0.001
 		}
 		res.send({'fees':`${fees}`})
