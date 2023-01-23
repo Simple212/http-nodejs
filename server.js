@@ -41,7 +41,7 @@ app.get('/price23', (req, res) => {
 		const response = await fixed.getPrice('0.2 LTC', 'BTC');
 		const response3 = await fixed.getCurrencies();
 		const value2 = await response.json()
-		const value2333 = await response.json()
+		const value2333 = await response3.json()
 		return value2333
 	}
 	getdp23().then(data2 => res.send({'first333':`${value2333}`}))
