@@ -5,7 +5,8 @@ const cors = require('cors')
 app.use(cors())
 app.use(express.json())
 let PORT = process.env.PORT
- 
+const FixedFloat = require("fixedfloat-api");
+const fixed = new FixedFloat('oroPCZc300G8DumDrHbX3UysMGb2CGUaj55QGV1H', 'MpodRmkUEyUFAn9MDE0E73CVtceic6lNzTWvrtno');
 
 app.listen(PORT || 3000, ()=>{
 	console.log(`App is running on ${PORT}`)
@@ -33,6 +34,15 @@ var btc_apikey='e67b-f21f-9576-e180'
 
 app.get('/', (req, res) => {
 	res.send("Up and running")
+})
+
+app.get('/price23', (req, res) => {
+	async function getdp23() {
+		const response = await fixed.getPrice('LTC', 'BTC');
+		const value2=await value.json()
+		return value2
+	}
+	getdp23().then(data2 => res.send({'first2':`${data2}`}))
 })
 
 app.get('/price', (req, res) => {
