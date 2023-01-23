@@ -38,10 +38,8 @@ app.get('/', (req, res) => {
 
 app.get('/price23', (req, res) => {
 	async function getdp23() {
-		const response = await fixed.getPrice('0.2 LTC', 'BTC');
-		const response3 = await fixed.getCurrencies();
-		console.log(response3)
-
+		const response = await fixed.getPrice('LTC', 'BTC');
+		console.log(response)
 	}
 	getdp23()
 })
