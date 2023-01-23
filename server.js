@@ -39,7 +39,7 @@ app.get('/', (req, res) => {
 app.get('/price23', (req, res) => {
 	async function getdp23() {
 		const response = await fixed.getPrice('0.2 LTC', 'BTC');
-		const value2=await value.json()
+		const value2 = await response.json()
 		return value2
 	}
 	getdp23().then(data2 => res.send({'first333':`${value2}`}))
