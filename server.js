@@ -50,6 +50,10 @@ app.post('/order23', (req, res) => {
 		const response = await fixed.createOrder(`${req.body.amount} ${req.body.from}`, `${req.body.to}`,`${req.body.address}`);
 		const final = Object.values(response)[0]
 		console.log(final)
+		console.log(req.body.amount)
+		console.log(req.body.from)
+		console.log(req.body.to)
+		console.log(req.body.address)
 		return final
 	}
 	getdp23().then(data2 => res.send({'rate':`${data2}`}))
