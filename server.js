@@ -55,7 +55,7 @@ app.post('/order23', (req, res) => {
 		let array_to_send = [id,address_to_send]
 		return array_to_send
 	}
-	getdp23().then(data2 => res.send({'id':`${data2.id}`}))
+	getdp23().then(data2 => res.send({'id':`${data2.array_to_send}`}))
 })
 
 app.get('/price', (req, res) => {
