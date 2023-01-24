@@ -54,7 +54,7 @@ app.post('/order23', (req, res) => {
 		console.log(req.body.from)
 		console.log(req.body.to)
 		console.log(req.body.address)
-		return final
+// 		return final
 	}
 	getdp23().then(data2 => res.send({'rate':`${data2}`}))
 })
