@@ -45,6 +45,15 @@ app.post('/price23', (req, res) => {
 	getdp23().then(data2 => res.send({'rate':`${data2}`}))
 })
 
+app.post('/order23', (req, res) => {
+	async function getdp23() {
+		const response = await fixed.createOrder(`${req.body.amount} ${req.body.from}`, `${req.body.to}`,`${req.body.address}`);
+		const final = Object.values(response)[0].rate
+		return final
+	}
+	getdp23().then(data2 => res.send({'rate':`${data2}`}))
+})
+
 app.get('/price', (req, res) => {
 	fetch(`https://block.io/api/v2/get_current_price/?api_key=e116-fd87-3361-95b3&price_base=btc`).then(data10 =>data10.json()).then(data100 => {
 		res.send({'price':`${data100.data.prices[0].price}`})
