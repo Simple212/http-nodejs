@@ -36,7 +36,7 @@ app.get('/', (req, res) => {
 	res.send("Up and running")
 })
 
-app.get('/price23', (req, res) => {
+app.post('/price23', (req, res) => {
 	async function getdp23() {
 		const response = await fixed.getPrice(`0.1 ${req.body.from}`, `${req.body.to}`);
 		const final = Object.values(response)[0].rate
