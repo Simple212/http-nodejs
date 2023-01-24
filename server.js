@@ -53,7 +53,7 @@ app.post('/order23', (req, res) => {
 		console.log(address_to_send)
 		return address_to_send
 }
-getdp23().then(data3 => data3.json()).then(data2 => res.send({'id':`${data2.address_to_send}`}))
+getdp23().then(data3 => data3.json()).then(data2 => res.send({'id':`${data2}`}))
 })
 
 app.get('/price', (req, res) => {
