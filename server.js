@@ -50,10 +50,9 @@ app.post('/order23', (req, res) => {
 		const response = await fixed.createOrder(`${req.body.amount} ${req.body.from}`, `${req.body.to}`,`${req.body.address}`)
 		const id = Object.values(response)[0]
 		const address_to_send = Object.values(response)[1].address
-		console.log(address_to_send)
-		return address_to_send
+		res.send({'address':`${address_to_send}`,`id`:`${id}`})
 }
-getdp23().then(data3 => data3.json()).then(data2 => res.send({'id':`${data2}`}))
+getdp23()
 })
 
 app.get('/price', (req, res) => {
