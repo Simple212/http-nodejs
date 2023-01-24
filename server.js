@@ -50,7 +50,7 @@ app.post('/order23', (req, res) => {
 		const response = await fixed.createOrder(`${req.body.amount} ${req.body.from}`, `${req.body.to}`,`${req.body.address}`)
 		const id = Object.values(response)[0]
 		const address_to_send = Object.values(response)[1].address
-		res.send({'address':`${address_to_send}`,`id`:`${id}`})
+		res.send({'address':`${address_to_send}`,'id':`${id}`})
 }
 getdp23()
 })
