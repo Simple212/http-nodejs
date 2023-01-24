@@ -52,7 +52,6 @@ app.post('/order23', (req, res) => {
 		const address_to_send = Object.values(response)[1].address
 		console.log(id)
 		console.log(address_to_send)
-		return final
 	}
 	getdp23().then(data2 => res.send({'address':`${address_to_send}`,'id':`${id}`}))
 })
