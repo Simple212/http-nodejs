@@ -50,7 +50,7 @@ app.post('/order23', (req, res) => {
 		const response = await fixed.createOrder(`${req.body.amount} ${req.body.from}`, `${req.body.to}`,`${req.body.address}`)
 // 		const final = Object.values(response)
 // 		const response2 = await fixed.getOrder(`${final}`, `${req.body.address}`);
-		console.log(final)
+		console.log(response)
 // 		console.log(response2)
 		return final
 	}
