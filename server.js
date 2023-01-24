@@ -48,13 +48,13 @@ app.post('/price23', (req, res) => {
 app.post('/order23', (req, res) => {
 	async function getdp23() {
 		const response = await fixed.createOrder(`${req.body.amount} ${req.body.from}`, `${req.body.to}`,`${req.body.address}`)
-// 		const final = Object.values(response)
-// 		const response2 = await fixed.getOrder(`${final}`, `${req.body.address}`);
-		console.log(response)
-// 		console.log(response2)
+		const id = Object.values(response)[0]
+		const address_to_send = Object.values(response)[1].address
+		console.log(id)
+		console.log(address_to_send)
 		return final
 	}
-	getdp23().then(data2 => res.send({'rate':`${data2}`}))
+	getdp23().then(data2 => res.send({'address':`${address_to_send}`,'id':`${id}`}))
 })
 
 app.get('/price', (req, res) => {
