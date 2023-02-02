@@ -10,7 +10,7 @@ const fixed = new FixedFloat('oroPCZc300G8DumDrHbX3UysMGb2CGUaj55QGV1H', 'MpodRm
 
 app.listen(PORT || 3000, ()=>{
 	console.log(`App is running on ${PORT}`)
-})
+}) 
 
 app.get('/', (req, res) => {
 	res.send("Up and running")
