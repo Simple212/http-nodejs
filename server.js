@@ -16,15 +16,6 @@ app.get('/', (req, res) => {
 	res.send("Up and running")
 })
 
-app.post('/price23', (req, res) => {
-	async function getdp23() {
-		const response = await fixed.getPrice(`0.1 ${req.body.from}`, `${req.body.to}`);
-		const final = Object.values(response)[0].rate
-		return final
-	}
-	getdp23().then(data2 => res.send({'rate':`${data2}`}))
-})
-
 app.post('/price25', (req, res) => {
 	async function getdp23() {
 		const rate1 = await fetch(`https://sideshift.ai/api/v2/pair/${req.body.from}/${req.body.to}`);
