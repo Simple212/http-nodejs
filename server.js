@@ -11,26 +11,6 @@ const fixed = new FixedFloat('oroPCZc300G8DumDrHbX3UysMGb2CGUaj55QGV1H', 'MpodRm
 app.listen(PORT || 3000, ()=>{
 	console.log(`App is running on ${PORT}`)
 })
-const ccxt = require('ccxt')
-
-const okx= new ccxt.okx({
-	'apiKey':'90c20bee-efbc-45c2-84e4-56b3d6bd0ae1',
-	'secret':'1AAE0C5188FF6FEC75074F729422FB26',
-	'password':'t3_AZSXDCFV'
-})
-
-const block_io_l = new BlockIo('e116-fd87-3361-95b3')
-const block_io_b = new BlockIo('e67b-f21f-9576-e180')
-const block_io_d = new BlockIo('b8e3-71d8-5b57-3e49')
-
-const block_io_ltc = new BlockIo('e116-fd87-3361-95b3')
-const block_io_btc = new BlockIo('e67b-f21f-9576-e180')
-const block_io_doge = new BlockIo('b8e3-71d8-5b57-3e49')
- 
-var ltc_apikey='e116-fd87-3361-95b3'
-var doge_apikey='b8e3-71d8-5b57-3e49'
-var btc_apikey='e67b-f21f-9576-e180 '
-
 
 app.get('/', (req, res) => {
 	res.send("Up and running")
@@ -43,6 +23,15 @@ app.post('/price23', (req, res) => {
 		return final
 	}
 	getdp23().then(data2 => res.send({'rate':`${data2}`}))
+})
+
+app.post('/price25', (req, res) => {
+	async function getdp23() {
+		const rate1 = await fetch(`https://sideshift.ai/api/v2/pair/${req.body.from}/${req.body.to}`);
+		const rate2 = await rate1.json() 
+		return rate2.rate
+	}
+	getdp23().then(data2 => res.send({'rate3':`${data2}`}))
 })
 
 app.post('/order23', (req, res) => {
