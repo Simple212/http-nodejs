@@ -42,17 +42,6 @@ app.post('/order25', (req, res) => {
 getdp23()
 })
 
-app.post('/order23', (req, res) => {
-	async function getdp23() {
-		const response = await fixed.createOrder(`${req.body.amount} ${req.body.from}`, `${req.body.to}`,`${req.body.address}`)
-		const id = Object.values(response)[0]
-		const address_to_send = Object.values(response)[1].address
-		res.send({'address':`${address_to_send}`,'id':`${id}`})
-	}
-	getdp23()
-})
-
-
 app.post('/txn',(req,res)=>{
 	
 	if(req.body.to58=='ltc'){
