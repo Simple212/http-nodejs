@@ -37,8 +37,8 @@ app.post('/order25', (req, res) => {
 		})
 		const shift2 = await  shift.json()
 		console.log(shift2)
-		const address_to_send = 
-		res.send({'address':`${address_to_send}`,'id':`${id}`})
+// 		const address_to_send = 
+// 		res.send({'address':`${address_to_send}`,'id':`${id}`})
 }
 getdp23()
 })
