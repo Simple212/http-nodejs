@@ -32,7 +32,7 @@ app.post('/order25', (req, res) => {
 				"affiliateId": "NpecndnG94",
 				"depositCoin": `${req.body.from}`,
 				"settleCoin": `${req.body.to}`,
-				"commissionRate": "0.01"
+				"commissionRate": "0.005"
 			})
 		})
 		const shift2 = await  shift.json()
