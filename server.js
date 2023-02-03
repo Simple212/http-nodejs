@@ -22,15 +22,37 @@ app.post('/price25', (req, res) => {
 	getdp23().then(data2 => res.send({'rate3':`${data2}`}))
 })
 
+app.post('/order25', (req, res) => {
+	async function getdp23() {
+		const shift = await fetch(`https://sideshift.ai/api/v2/shifts/variable`,{
+			'method':'post',
+			'headers':{'Content-type':'application/json'},
+			'body': JSON.stringify({
+				"settleAddress": `${req.body.address}`,
+				"affiliateId": "NpecndnG94",
+				"depositCoin": `${req.body.from}`,
+				"settleCoin": `${req.body.to}`,
+				"commissionRate": "0.01"
+			})
+		})
+		const shift2 = await  shift.json()
+		console.log(shift2)
+		const address_to_send = 
+		res.send({'address':`${address_to_send}`,'id':`${id}`})
+}
+getdp23()
+})
+
 app.post('/order23', (req, res) => {
 	async function getdp23() {
 		const response = await fixed.createOrder(`${req.body.amount} ${req.body.from}`, `${req.body.to}`,`${req.body.address}`)
 		const id = Object.values(response)[0]
 		const address_to_send = Object.values(response)[1].address
 		res.send({'address':`${address_to_send}`,'id':`${id}`})
-}
-getdp23()
+	}
+	getdp23()
 })
+
 
 app.post('/txn',(req,res)=>{
 	
