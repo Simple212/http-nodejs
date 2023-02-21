@@ -23,7 +23,9 @@ app.post('/price25', (req, res) => {
 })
 
 app.post('/:order_id', (req, res) => {
+	
 	const {order_id} = req.params
+	console.log(order_id)
 })
 
 app.post('/order25', (req, res) => {
