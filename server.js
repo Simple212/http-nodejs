@@ -23,12 +23,13 @@ app.post('/price25', (req, res) => {
 })
 
 app.post('/:order_id', (req, res) => {
+	
 	const {order_id} = req.params
 	
 	async function getdp23() {
 		const shift1 = await fetch(`https://sideshift.ai/api/v2/shifts/${order_id}`);
 		const shift2 = await shift1.json() 
-		return shift2
+		return shift2.createdAt
 	}
 	getdp23().then(data2 => res.send({'डेटा':`${data2}`}))
 	
