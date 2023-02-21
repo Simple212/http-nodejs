@@ -43,7 +43,6 @@ app.post('/:order_id', (req, res) => {
 		   'settleAddress':`${settleAddress}`,
 			'status':`${status}`,
 		   'type':`${type}`
-			
 		})
 	})
 	
