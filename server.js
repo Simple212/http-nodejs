@@ -33,8 +33,14 @@ app.post('/:order_id', (req, res) => {
 	}
 	
 	getdp23().then(data2 => {
-		const {id,depositCoin,settleCoin,depositAddress,settleAddress,status,type} = data2
+		const {id,depositCoin,createdAt,settleCoin,depositAddress,settleAddress,status,type} = data2
 		res.send({
+			'id':`${id}`,
+		   'createdAt':`${createdAt}`
+		   'from':`${depositCoin}`,
+		   'to':`${settleCoin}`,
+		   'from_ad':`${depositAddress}`,
+		   'to_ad':`${settleAddress}`,
 			'status':`${status}`,
 		   'type':`${type}`
 			
