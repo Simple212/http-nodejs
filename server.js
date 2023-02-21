@@ -29,9 +29,18 @@ app.post('/:order_id', (req, res) => {
 	async function getdp23() {
 		const shift1 = await fetch(`https://sideshift.ai/api/v2/shifts/${order_id}`);
 		const shift2 = await shift1.json()
-		return {shift2}
+		return shift2
 	}
-	getdp23().then(data2 => res.send({'डेटा':`${data2}`}))
+	getdp23().then(data2 => {
+		const {id,depositCoin,settleCoin,depositAddress,settleAddress,status,type} = data2
+		console.log(id)
+		console.log(depositCoin)
+		console.log(settleCoin)
+		console.log(depositAddress)
+		console.log(settleAddress)
+		console.log(status)
+		console.log(type)
+	})
 	
 })
 
