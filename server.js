@@ -37,6 +37,10 @@ app.post('/:order_id', (req, res) => {
 		res.send({
 			'id':`${id}`,
 		   'depositCoin':`${depositCoin}`,
+		   'createdAt':`${createdAt}`,
+		   'settleCoin':`${settleCoin}`,
+		   'depositAddress':`${depositAddress}`,
+		   'settleAddress':`${settleAddress}`,
 			'status':`${status}`,
 		   'type':`${type}`
 			
