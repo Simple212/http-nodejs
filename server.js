@@ -36,6 +36,7 @@ app.post('/:order_id', (req, res) => {
 		const {id,depositCoin,createdAt,settleCoin,depositAddress,settleAddress,status,type} = data2
 		res.send({
 			'id':`${id}`,
+		   'depositCoin':`${depositCoin}`,
 			'status':`${status}`,
 		   'type':`${type}`
 			
