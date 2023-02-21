@@ -37,10 +37,10 @@ app.post('/:order_id', (req, res) => {
 		res.send({
 			'id':`${id}`,
 		   'createdAt':`${createdAt}`
-		   'from':`${depositCoin}`,
-		   'to':`${settleCoin}`,
-		   'from_ad':`${depositAddress}`,
-		   'to_ad':`${settleAddress}`,
+		   'depositCoin':`${depositCoin}`,
+		   'settleCoin':`${settleCoin}`,
+		   'depositAddress':`${depositAddress}`,
+		   'settleAddress':`${settleAddress}`,
 			'status':`${status}`,
 		   'type':`${type}`
 			
