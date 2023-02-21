@@ -31,9 +31,14 @@ app.post('/:order_id', (req, res) => {
 		const shift2 = await shift1.json()
 		return shift2
 	}
+	
 	getdp23().then(data2 => {
 		const {id,depositCoin,settleCoin,depositAddress,settleAddress,status,type} = data2
-		res.send({`id`:`${id}`,`from`:`${depositCoin}`,`to`:`${settleCoin}`,`from_ad`:`${depositAddress}`,`to_ad`:`${settleAddress}`,`status`:`${status}`,`type`:`${type}`})
+		res.send({
+			`status`:`${status}`,
+			`type`:`${type}`
+			
+		})
 	})
 	
 })
