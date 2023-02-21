@@ -22,8 +22,8 @@ app.post('/price25', (req, res) => {
 	getdp23().then(data2 => res.send({'rate3':`${data2}`}))
 })
 
-app.post('/:id', (req, res) => {
-	console.log(req.params)
+app.post('/:order_id', (req, res) => {
+	const {order_id} = req.params
 })
 
 app.post('/order25', (req, res) => {
