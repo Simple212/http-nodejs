@@ -22,31 +22,31 @@ app.post('/price25', (req, res) => {
 	getdp23().then(data2 => res.send({'rate3':`${data2}`}))
 })
 
-app.post('/:order_id', (req, res) => {
-	
-	const {order_id} = req.params
-	
-	async function getdp23() {
-		const shift1 = await fetch(`https://sideshift.ai/api/v2/shifts/${order_id}`);
-		const shift2 = await shift1.json()
-		return shift2
-	}
-	
-	getdp23().then(data2 => {
-		const {id,depositCoin,createdAt,settleCoin,depositAddress,settleAddress,status,type} = data2
-		res.send({
-			'id':`${id}`,
-		   'depositCoin':`${depositCoin}`,
-		   'createdAt':`${createdAt}`,
-		   'settleCoin':`${settleCoin}`,
-		   'depositAddress':`${depositAddress}`,
-		   'settleAddress':`${settleAddress}`,
-			'status':`${status}`,
-		   'type':`${type}`
-		})
-	})
-	
-})
+// app.post('/:order_id', (req, res) => {
+// 	
+// 	const {order_id} = req.params
+// 	
+// 	async function getdp23() {
+// 		const shift1 = await fetch(`https://sideshift.ai/api/v2/shifts/${order_id}`);
+// 		const shift2 = await shift1.json()
+// 		return shift2
+// 	}
+// 	
+// 	getdp23().then(data2 => {
+// 		const {id,depositCoin,createdAt,settleCoin,depositAddress,settleAddress,status,type} = data2
+// 		res.send({
+// 			'id':`${id}`,
+// 		   'depositCoin':`${depositCoin}`,
+// 		   'createdAt':`${createdAt}`,
+// 		   'settleCoin':`${settleCoin}`,
+// 		   'depositAddress':`${depositAddress}`,
+// 		   'settleAddress':`${settleAddress}`,
+// 			'status':`${status}`,
+// 		   'type':`${type}`
+// 		})
+// 	})
+// 	
+// })
 
 app.post('/order25', (req, res) => {
 	console.log(req.body.address)
