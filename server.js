@@ -71,30 +71,3 @@ app.post('/order25', (req, res) => {
 getdp23()
 })
 
-app.post('/txn',(req,res)=>{
-	
-	if(req.body.to58=='ltc'){
-	async function first501() {
-		const first20 = await block_io_ltc.get_transactions({ type: 'sent', before_tx: '' })
-		res.send({'txid':`${first20.data.txs[0].txid}`})
-	}
-	first501()
-	}
-	
-	
-	if(req.body.to58=='btc'){
-		async function first501() {
-			const first20 = await block_io_btc.get_transactions({ type: 'sent', before_tx: '' })
-			res.send({'txid':`${first20.data.txs[0].txid}`})
-		}
-		first501()
-	}
-	
-	if(req.body.to58=='doge'){
-		async function first501() {
-			const first20 = await block_io_doge.get_transactions({ type: 'sent', before_tx: '' })
-			res.send({'txid':`${first20.data.txs[0].txid}`})
-		}
-		first501()
-	}
-})
