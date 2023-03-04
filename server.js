@@ -7,11 +7,10 @@ const bcrypt = require('bcrypt-nodejs')
 const db = require('knex')({
 	client: 'pg',
 	connection: {
-		host : '127.0.0.1',
-		port : 5432,
-		user : 'postgres',
-		password : 'post',
-		database : 'BITBARTER'
+		host : 'satao.db.elephantsql.com',
+		user : 'iixcuzpe',
+		password : 'wyuiI0ydOOdsgqeS2Vn3SpOUirOzIqz_',
+		database : 'iixcuzpe'
 	}
 }); 
 app.use(cors())
