@@ -17,6 +17,10 @@ const db = require('knex')({
 app.use(cors())
 app.use(express.json())
 
+app.listen(process.env.PORT|| 3001, () => {
+	console.log(`App is running on ${process.env.PORT}`)
+})
+
 app.get('/', (req, res) => {
 	res.send("Up and running")
 })
@@ -87,5 +91,6 @@ app.post('/signup', (req, res) => {
 		profile_id:profile_id,
 		email:email,
 		hashp : password
+		
 	}).then(console.log)
 })
