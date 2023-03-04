@@ -98,13 +98,12 @@ app.post('/signup', (req, res) => {
 app.post('/signin', (req, res) => {
 	const {email,password} = req.body
 	db('users').select('email','hashp').where("email","=",email).then(snd =>{
-		console.log(snd[0])
 		const isValid = bcrypt.compareSync(password, snd[0].hashp);
 		if(isValid){
-			console.log("matches")
+			res.send({'user_exits':'yes'})
 		}
 		else{
-			console.log("matches_not")
+			res.send({'user_exits':'no'})
 		}
 	} )
 })
