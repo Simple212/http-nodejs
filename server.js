@@ -14,15 +14,8 @@ const db = require('knex')({
 		database : 'BITBARTER'
 	}
 }); 
-
-
 app.use(cors())
 app.use(express.json())
-let PORT = process.env.PORT
-
-app.listen(PORT || 3000, ()=>{
-	console.log(`App is running on ${PORT}`)
-}) 
 
 app.get('/', (req, res) => {
 	res.send("Up and running")
