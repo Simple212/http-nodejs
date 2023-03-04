@@ -1,6 +1,21 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
+const knex = require('knex')
+const bcrypt = require('bcrypt-nodejs')
+
+const db = require('knex')({
+	client: 'pg',
+	connection: {
+		host : '127.0.0.1',
+		port : 5432,
+		user : 'postgres',
+		password : 'post',
+		database : 'BITBARTER'
+	}
+});
+
+
 app.use(cors())
 app.use(express.json())
 let PORT = process.env.PORT
@@ -71,3 +86,13 @@ app.post('/order25', (req, res) => {
 getdp23()
 })
 
+
+app.post('/signup', (req, res) => {
+	const {profile_id,email,password} = req.body
+	db('users').insert({
+		
+		profile_id:profile_id,
+		email:email,
+		hashp : password
+	}).then(console.log)
+})
