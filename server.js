@@ -103,10 +103,10 @@ app.post('/signin', (req, res) => {
 	db('users').select('email','hashp').where("email","=",email).then(snd =>{
 		const isValid = bcrypt.compareSync(password, snd[0].hashp);
 		if(isValid){
-			res.send({'user_exits':'yes'})
+			res.send({'user_exits':true})
 		}
 		else{
-			res.send({'user_exits':'no'})
+			res.send({'user_exits':false})
 		}
 	} )
 })
