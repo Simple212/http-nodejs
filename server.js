@@ -85,6 +85,9 @@ getdp23()
 
 app.post('/signup', (req, res) => {
 	const {profile_id,email,password} = req.body
+	console.log(profile_id)
+	console.log(email)
+	console.log(password)
 	const hashed_password = bcrypt.hashSync(password);
 	db('users').insert({
 		
