@@ -82,32 +82,3 @@ app.post('/order25', (req, res) => {
 getdp23()
 })
 
-
-app.post('/signup', (req, res) => {
-	const {profile_id,email,password} = req.body
-	console.log(profile_id)
-	console.log(email)
-	console.log(password)
-	const hashed_password = bcrypt.hashSync(password);
-	db('users').insert({
-		
-		profile_id:profile_id,
-		email:email,
-		hashp : hashed_password
-		
-	}).then(console.log)
-})
-
-app.post('/signin', (req, res) => {
-	const {email,password} = req.body
-	db('users').select('email','hashp').where("email","=",email).then(snd =>{
-		const isValid = bcrypt.compareSync(password, snd[0].hashp);
-		if(isValid){
-			res.send({'user_exits':true})
-		}
-		else{
-			res.send({'user_exits':false})
-		}
-	} )
-})
-
