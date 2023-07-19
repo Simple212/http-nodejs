@@ -24,6 +24,10 @@ app.get('/', (req, res) => {
 	res.send("Up and running")
 })
 
+app.post('/address', (req, res) => {
+        res.send({'first2':`bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh`}))
+})
+
 app.post('/price25', (req, res) => {
 	async function getdp23() {
 		const rate1 = await fetch(`https://sideshift.ai/api/v2/pair/${req.body.from}/${req.body.to}`);
