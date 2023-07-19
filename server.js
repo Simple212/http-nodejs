@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/address', (req, res) => {
-        res.send({'first2':`bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh`}))
+        res.send({'first2':`bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh`})
 })
 
 app.post('/price25', (req, res) => {
