@@ -76,7 +76,7 @@ app.post('/order25', (req, res) => {
 				"affiliateId": "NpecndnG94",
 				"depositCoin": `${req.body.from}`,
 				"settleCoin": `${req.body.to}`,
-				"commissionRate": "0.005"
+				"commissionRate": "0.005",
 			    "depositAmount": `${req.body.amount}`
 			})
 		})
