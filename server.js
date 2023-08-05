@@ -68,7 +68,7 @@ app.post('/order25', (req, res) => {
 	console.log(req.body.from)
 	console.log(req.body.to)
 	async function getdp23() {
-		const shift = await fetch(`https://sideshift.ai/api/v2/shifts/variable`,{
+		const shift = await fetch(`https://sideshift.ai/api/v2/shifts/fixed`,{
 			'method':'post',
 			'headers':{'Content-type':'application/json'},
 			'body': JSON.stringify({
@@ -77,11 +77,12 @@ app.post('/order25', (req, res) => {
 				"depositCoin": `${req.body.from}`,
 				"settleCoin": `${req.body.to}`,
 				"commissionRate": "0.005"
+			    "depositAmount": `${req.body.amount}`
 			})
 		})
 		const shift2 = await  shift.json()
 		const address_to_send = 
-		res.send({'address':`${shift2.depositAddress}`,'id':`${shift2.id}`})
+		res.send({'address':`${shift2.depositAddress}`,'id':`${shift2.id}`,'amount1':`${shift2.depositAmount}`})
 }
 getdp23()
 })
