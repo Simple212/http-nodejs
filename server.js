@@ -67,6 +67,7 @@ app.post('/order25', (req, res) => {
 	console.log(req.body.address)
 	console.log(req.body.from)
 	console.log(req.body.to)
+	console.log(req.body.amount)
 	async function getdp23() {
 		const shift = await fetch(`https://sideshift.ai/api/v2/shifts/fixed`,{
 			'method':'post',
