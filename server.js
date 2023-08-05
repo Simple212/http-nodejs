@@ -48,13 +48,15 @@ app.post('/id/:order_id', (req, res) => {
 	}
 	
 	getdp23().then(data2 => {
-		const {id,depositCoin,createdAt,settleCoin,depositAddress,settleAddress,status,type} = data2
+		const {id,depositCoin,createdAt,settleCoin,depositAddress,settleAddress,status,type,depositMin,depositMax} = data2
 		res.send({
 			'id':`${id}`,
 		   'depositCoin':`${depositCoin}`,
 		   'createdAt':`${createdAt}`,
 		   'settleCoin':`${settleCoin}`,
 		   'depositAddress':`${depositAddress}`,
+		   	'depositMin':`${depositMin}`,
+		   	'depositMax':`${depositMax}`,
 		   'settleAddress':`${settleAddress}`,
 			'status':`${status}`,
 		   'type':`${type}`
@@ -69,7 +71,7 @@ app.post('/order25', (req, res) => {
 	console.log(req.body.to)
 	console.log(req.body.amount)
 	async function getdp23() {
-		const shift = await fetch(`https://sideshift.ai/api/v2/shifts/variable`,{
+		const shift = await fetch(`https://sideshift.ai/api/v2/quotes`,{
 			'method':'post',
 			'headers':{'Content-type':'application/json'},
 			'body': JSON.stringify({
